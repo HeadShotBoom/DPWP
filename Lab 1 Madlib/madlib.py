@@ -40,27 +40,27 @@ story = {0: "Dear ", 1: " I am currently in your ", 2: " class for the ", 3: "th
 
 line_number = 0
 while line_number < 12:
-    if int(line_number) == 0:
+    if line_number == 0:
         final_story = story[line_number]+answers[line_number]
         print final_story
         line_number += 1
-    elif int(line_number) > 0 and int(line_number) < 3:
+    elif line_number > 0 and int(line_number) < 3:
         final_story = story[line_number]+answers[line_number]+story[line_number+1]+answers[line_number+1]+story[line_number+2]+answers[line_number+2]+"."
         print final_story
         line_number += 3
-    elif int(line_number) == 4:
+    elif line_number == 4:
         final_story = story[line_number]+answers[line_number]+story[line_number+1]+answers[line_number+1]+story[line_number+2]
         print final_story
         line_number += 3
-    elif int(line_number) == 7:
+    elif line_number == 7:
         final_story = story[line_number]+answers[line_number-1]+story[line_number+1]+answers[line_number]+story[line_number+2]
         print final_story
         line_number += 3
-    elif int(line_number) == 10:
+    elif line_number == 10:
         final_story = story[line_number]+answers[line_number-2]+story[line_number+1]+answers[line_number-1]+story[line_number+2]
         print final_story
         line_number += 1
-    elif int(line_number) == 11:
+    elif line_number == 11:
         print story[13]
         print answers[10]
         line_number += 1
