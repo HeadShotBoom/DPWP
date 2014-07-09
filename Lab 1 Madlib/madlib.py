@@ -17,6 +17,15 @@
 # Sincerely,
 # NICKNAME
 
+def money_maker(age, fingers):
+    total = int(age)-int(fingers)
+    if total >=0:
+        total=1
+        return total
+    else:
+        total=2
+        return total
+
 answers = [] #Array to hold answers to questions
 final_story = "Placeholder"
 '''
@@ -57,7 +66,7 @@ while line_number < 12:
         print final_story
         line_number += 3
     elif line_number == 10:
-        final_story = story[line_number]+answers[line_number-2]+story[line_number+1]+answers[line_number-1]+story[line_number+2]
+        final_story = story[line_number]+answers[line_number-2]+story[line_number+1]+str(money_maker(answers[2],answers[9]))+story[line_number+2]
         print final_story
         line_number += 1
     elif line_number == 11:
