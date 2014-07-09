@@ -32,7 +32,6 @@ def money_maker(age, fingers):
     else:
         total=2
         return total
-
 '''
 This is a counter for purposes of ensuring the loop runs through in its entirely. It will also be used to interate through
 the dictionary entries later and answers array during assembly
@@ -75,4 +74,3 @@ while line_number < 12:#This is my while loop for assembling the madlib it will 
         If one of the conditions above fails, we will enter this section of code and cause the function to stop
         '''
         pass
-
