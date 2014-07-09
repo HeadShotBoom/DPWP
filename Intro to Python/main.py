@@ -64,7 +64,7 @@ def calcArea(h, w):
     area = h * w
     return area + x
 
-a = calcArea(20, 100);
+a = calcArea(20, 100)
 # print "My area is "+str(a)+" sq feet."
 print a
 

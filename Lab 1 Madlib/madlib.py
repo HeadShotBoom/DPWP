@@ -18,7 +18,7 @@
 # NICKNAME
 
 answers = [] #Array to hold answers to questions
-
+final_story = "Placeholder"
 '''
 raw_input queries user for an answer to the question inside parenthesis. answers.append adds the answer to the array named answers
 '''
@@ -36,4 +36,12 @@ answers.append(raw_input("Nickname your girlfriend/boyfriend calls you.  "))
 
 story = dict() #Create Dictionary Object
 story = {0: "Dear ", 1: " I am currently in your ", 2: " class for the ", 3: "  time and I am wondering if I could get an extension on my homework about ", 4: " I wont be able to attend class for the next ", 5: " weeks due to a ", 6: " accident. ", 7: " I also broke my ", 8: " while ", 9: " so I am unable to operate the complexities of FSO 3.0. ", 10: " I feel ", 11: " that you are giving me this exception, and if necessary ill give you $", 12: " to give me a 100 on this assignment.", 13: "Sincerely,"}
-print story[1]
+
+line_number = 0
+for s in story:
+    if int(line_number) < 1:
+        final_story = story[s]+answers[s]
+        line_number += 1
+    else:
+        pass
+print final_story
