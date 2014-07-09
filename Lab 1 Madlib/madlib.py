@@ -1,14 +1,3 @@
-#Below is a function i will use to take user input from multiple entries and calculate a value to return in the madlib
-def money_maker(age, fingers):
-    total = int(age)-int(fingers)
-    #This is a conditional statement that allows me to account for negative numbers
-    if total >=0:
-        total=1
-        return total
-    else:
-        total=2
-        return total
-
 answers = [] #Array to hold answers to questions
 final_story = "Placeholder"
 '''
@@ -33,13 +22,22 @@ be in a normal madlib. This allows me to seamlessly assemble the madlib for easy
 '''
 story = {0: "Dear ", 1: " I am currently in your ", 2: " class for the ", 3: "th time and I am wondering if I could get an extension on my homework about ", 4: " I wont be able to attend class for the next ", 5: " weeks due to a ", 6: " accident. ", 7: " I also broke my ", 8: " while ", 9: " so I am unable to operate the complexities of FSO 3.0. ", 10: " I feel ", 11: " that you are giving me this exception, and if necessary ill give you $", 12: " to give me a 100 on this assignment.", 13: "Sincerely,"}
 
+#Below is a function i will use to take user input from multiple entries and calculate a value to return in the madlib
+def money_maker(age, fingers):
+    total = int(age)-int(fingers)
+    #This is a conditional statement that allows me to account for negative numbers
+    if total >=0:
+        total=1
+        return total
+    else:
+        total=2
+        return total
+
 '''
 This is a counter for purposes of ensuring the loop runs through in its entirely. It will also be used to interate through
 the dictionary entries later and answers array during assembly
 '''
 line_number = 0
-
-
 while line_number < 12:#This is my while loop for assembling the madlib it will run as long as line_number is less than 12
     '''
     I used conditional statements to assemble the madlib. I didnt want the text to read on a single line, but more like a childs
