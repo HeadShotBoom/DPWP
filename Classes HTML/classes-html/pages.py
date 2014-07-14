@@ -22,3 +22,4 @@ class Page(object):
         all = self.head + self.body + self.close
         all = all.format(**locals())
         return all
+
