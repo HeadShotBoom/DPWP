@@ -22,6 +22,7 @@ class MainHandler(webapp2.RequestHandler):
         </form>
     </body>
 </html>'''
+        print self.request.GET['user']
         self.response.write(page) #Prints information to page
 
 app = webapp2.WSGIApplication([
