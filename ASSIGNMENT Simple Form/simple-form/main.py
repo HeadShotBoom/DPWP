@@ -8,13 +8,13 @@ import webapp2
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        page = '''<!DOCTYPE HTML>
+        page_head = '''<!DOCTYPE HTML>
 <html>
     <head>
     <title>Simple Form</title>
 
-    </head>
-    <body>
+    </head>'''
+        first_page = '''<body>
 
         <form method="GET">
             <label>Name: <input type="text" name="first" /></label>
@@ -28,8 +28,8 @@ class MainHandler(webapp2.RequestHandler):
                 <option value="mad">Mad</option>
                 <option value="nervous">Nervous</option>
             </select>
-            <input type="submit" value="Submit" />
-        </form>
+            <input type="submit" value="Submit" />'''
+        page_close = '''</form>
     </body>
 </html>'''
         if self.request.GET:
@@ -37,10 +37,12 @@ class MainHandler(webapp2.RequestHandler):
             last_name = self.request.GET["last"]
             email = self.request.GET["email"]
             gender = self.request.GET["gender"]
-            birthday = self.request.GET["mood"]
-            self.response.write("First Name: " + first_name)
+            mood = self.request.GET["mood"]
+            self.response.write("First Name: " + first_name + "Last Name: " + last_name)
+            self.response.write("Email: " + email)
+            self.response.write("You are a " + mood + gender +".")
         else:
-            self.response.write(page)
+            self.response.write(page_head + first_page + page_close)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
