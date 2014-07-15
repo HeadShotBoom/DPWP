@@ -4,12 +4,16 @@ Daniel Carroll
 Design Patterns for Web Programming
 Simple Form
 '''
-import webapp2
+import webapp2 # Inport the WebApp app
 
-class MainHandler(webapp2.RequestHandler):
+class MainHandler(webapp2.RequestHandler): # Single class to handle all the functions of the app
 
 
-    def get(self):
+    def get(self): # Single function to handle entire app
+
+        '''
+        Below are several variables holding HTML elements that makeup my page. I have broken them down into useful chunks that can be combined and called to make all of my pages
+        '''
         self.page_head = """<!DOCTYPE HTML>
 <html>
     <head>
@@ -18,6 +22,7 @@ class MainHandler(webapp2.RequestHandler):
 
     </head>
     <body>"""
+        # Below is the HTML that gets placed under the head of the page upon initial load. It consists of the form and text that collects data from the user.
         self.first_page = """
         <img src="images/logo.png" alt="Yacht" >
         <section>
@@ -36,6 +41,7 @@ class MainHandler(webapp2.RequestHandler):
             </select>
             <input type="submit" value="Submit" />
         </form></section>"""
+        # This is just the closing tags of the page
         self.page_close = """
     </body>
 </html>"""
