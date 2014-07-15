@@ -22,10 +22,10 @@ class MainHandler(webapp2.RequestHandler):
             <input type="checkbox" name="gender" value="Male">Male<br>
             <input type="checkbox" name="gender" value="Female">Female
             <select name="mood">
-                <option value="happy">Happy</option>
-                <option value="sad">Sad</option>
-                <option value="mad">Mad</option>
-                <option value="nervous">Nervous</option>
+                <option value="Happy">Happy</option>
+                <option value="Sad">Sad</option>
+                <option value="Mad">Mad</option>
+                <option value="Nervous">Nervous</option>
             </select>
             <input type="submit" value="Submit" />
         </form>'''
@@ -39,7 +39,7 @@ class MainHandler(webapp2.RequestHandler):
             gender = self.request.GET["gender"]
             mood = self.request.GET["mood"]
             second_page = '''<h3>Please Verify Your Information Below</h3>
-        <p>Name: ''' + first_name + last_name + '''</p>
+        <p>Name: ''' + first_name + " " + last_name + '''</p>
         <p>Email: ''' + email + '''</p>
         <p>Gender: ''' + gender + '''</p>
         <p>Mood: ''' + mood + '''</p>
