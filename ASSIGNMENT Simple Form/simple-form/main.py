@@ -9,11 +9,11 @@ import webapp2  # Import the WebApp app
 
 class MainHandler(webapp2.RequestHandler):  # Single class to handle all the functions of the app
 
-
     def get(self):  # Single function to handle entire app
 
         """
-        Below are several variables holding HTML elements that makeup my page. I have broken them down into useful chunks that can be combined and called to make all of my pages
+        Below are several variables holding HTML elements that makeup my page. I have broken them down into useful
+        chunks that can be combined and called to make all of my pages
         """
         self.page_head = """<!DOCTYPE HTML>
 <html>
