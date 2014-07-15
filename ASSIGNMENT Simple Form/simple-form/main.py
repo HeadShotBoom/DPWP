@@ -6,10 +6,10 @@ Simple Form
 '''
 import webapp2 # Inport the WebApp app
 
-class MainHandler(webapp2.RequestHandler): # Single class to handle all the functions of the app
+class MainHandler(webapp2.RequestHandler):  # Single class to handle all the functions of the app
 
 
-    def get(self): # Single function to handle entire app
+    def get(self):  # Single function to handle entire app
 
         '''
         Below are several variables holding HTML elements that makeup my page. I have broken them down into useful chunks that can be combined and called to make all of my pages
@@ -22,7 +22,8 @@ class MainHandler(webapp2.RequestHandler): # Single class to handle all the func
 
     </head>
     <body>"""
-        # Below is the HTML that gets placed under the head of the page upon initial load. It consists of the form and text that collects data from the user.
+        # Below is the HTML that gets placed under the head of the page upon initial load.
+        # It consists of the form and text that collects data from the user.
         self.first_page = """
         <img src="images/logo.png" alt="Yacht" >
         <section>
@@ -45,16 +46,23 @@ class MainHandler(webapp2.RequestHandler): # Single class to handle all the func
         self.page_close = """
     </body>
 </html>"""
+        #This is the error message that will load if the user tries to submit blank fields.
         self.error = """
         <h1 class="error">You Must Completly Fill Out This Form</h1>
         """
+        # Below is the conditional statement that checks to see if a request has been made from the page.
         if self.request.GET:
+            # If a request has been made from the form this conditional statements ensures there are no blank fields
             if self.request.GET["first"] != "" and self.request.GET["last"] != "" and self.request.GET["email"] != "":
+                # If there are no blank fields, this code will run.
+                # The next 5 lines stores what is entered into the input fields to a variable that I will use later
                 first_name = self.request.GET["first"]
                 last_name = self.request.GET["last"]
                 email = self.request.GET["email"]
                 gender = self.request.GET["gender"]
                 mood = self.request.GET["mood"]
+                # This is code that IF a populated request was made will take that info
+                # and publish it to the browser.
                 self.second_page = """<section>
                 <h3>Please Verify Your Information Below</h3>
                 <p>Name: """ + first_name + " " + last_name + """</p>
