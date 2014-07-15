@@ -49,7 +49,7 @@ class MainHandler(webapp2.RequestHandler):  # Single class to handle all the fun
 </html>"""
         #This is the error message that will load if the user tries to submit blank fields.
         self.error = """
-        <h1 class="error">You Must Completly Fill Out This Form</h1>
+        <h1 class="error">You Must Completely Fill Out This Form</h1>
         """
         # Below is the conditional statement that checks to see if a request has been made from the page.
         if self.request.GET:
@@ -80,7 +80,7 @@ class MainHandler(webapp2.RequestHandler):  # Single class to handle all the fun
         else:  # If no request has been made, an initial page with blank fields is populated
             self.response.write(self.page_head + self.first_page + self.page_close)
 
-# Dont touch this, its magical and we dont need to know what it does.
+# Don't touch this, its magical and we don't need to know what it does.
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
 ], debug=True)
