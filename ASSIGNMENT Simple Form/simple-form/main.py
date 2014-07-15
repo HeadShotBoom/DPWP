@@ -12,10 +12,13 @@ class MainHandler(webapp2.RequestHandler):
 <html>
     <head>
     <title>Simple Form</title>
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
 
     </head>
     <body>'''
-        first_page = '''<form method="GET">
+        first_page = '''
+        <h2>Please enter your profile information</h2>
+        <form method="GET">
             <label>Name: <input type="text" name="first" /></label>
             <label>Name: <input type="text" name="last" /></label>
             <label>Email: <input type="test" name="email" /></label>
