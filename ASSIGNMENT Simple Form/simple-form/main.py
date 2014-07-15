@@ -1,9 +1,9 @@
-'''
+"""
 Daniel Carroll
 14 July 2014
 Design Patterns for Web Programming
 Simple Form
-'''
+"""
 import webapp2 # Inport the WebApp app
 
 class MainHandler(webapp2.RequestHandler):  # Single class to handle all the functions of the app
@@ -11,9 +11,9 @@ class MainHandler(webapp2.RequestHandler):  # Single class to handle all the fun
 
     def get(self):  # Single function to handle entire app
 
-        '''
+        """
         Below are several variables holding HTML elements that makeup my page. I have broken them down into useful chunks that can be combined and called to make all of my pages
-        '''
+        """
         self.page_head = """<!DOCTYPE HTML>
 <html>
     <head>
