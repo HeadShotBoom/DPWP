@@ -57,24 +57,35 @@ class MainHandler(webapp2.RequestHandler):  # Single class to handle all the fun
             if self.request.GET["first"] != "" and self.request.GET["last"] != "" and self.request.GET["email"] != "":
                 # If there are no blank fields, this code will run.
                 # The next 5 lines stores what is entered into the input fields to a variable that I will use later
-                first_name = self.request.GET["first"]
-                last_name = self.request.GET["last"]
-                email = self.request.GET["email"]
-                gender = self.request.GET["gender"]
-                mood = self.request.GET["mood"]
+                # first_name = self.request.GET["first"]
+                # last_name = self.request.GET["last"]
+                # email = self.request.GET["email"]
+                # mood = self.request.GET["mood"]
+                print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + str(self.request.GET)
+                test = [self.request.GET].index("u'gender'")
+                print test
+                # if str(self.request.GET).index("u'gender'"):
+                #     print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
+                # else:
+                #     print "()()()()()()()()()()()()()()()()()()()()()()()()()("
+                # print test
+                # if int(test) > 0:
+                #     print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ THIS WORKS"
+                # else:
+                #     print "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ THIS DOSENT WORK"
                 # This is code that IF a populated request was made will take that info
                 # and publish it to the browser.
-                self.second_page = """<section>
-                <h3>Please Verify Your Information Below</h3>
-                <p>Name: """ + first_name + " " + last_name + """</p>
-                <p>Email: """ + email + """</p>
-                <p>Gender: """ + gender + """</p>
-                <p>Mood: """ + mood + """</p>
-                <input type="button" value="Thats Correct" />
-                </section>
-                """
+                # self.second_page = """<section>
+                # <h3>Please Verify Your Information Below</h3>
+                # <p>Name: """ + first_name + " " + last_name + """</p>
+                # <p>Email: """ + email + """</p>
+                # <p>Gender: """ + gender + """</p>
+                # <p>Mood: """ + mood + """</p>
+                # <input type="button" value="Thats Correct" />
+                # </section>
+                # """
                 #  This is the code that concatenates the partial HTML pages and publishes to the browser.
-                self.response.write(self.page_head + self.second_page + self.page_close)
+                # self.response.write(self.page_head + self.second_page + self.page_close)
             else:  # If they submit a blank request, this populates the page with an error message
                 self.response.write(self.page_head + self.error + self.first_page + self.page_close)
         else:  # If no request has been made, an initial page with blank fields is populated
