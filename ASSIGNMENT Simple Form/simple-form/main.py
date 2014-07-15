@@ -62,8 +62,9 @@ class MainHandler(webapp2.RequestHandler):  # Single class to handle all the fun
                 # email = self.request.GET["email"]
                 # mood = self.request.GET["mood"]
                 print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + str(self.request.GET)
-                test = [self.request.GET].index("u'gender'")
-                print test
+                test = str([self.request.GET])
+                check = test.index("u'gender'")
+                print str(check)
                 # if str(self.request.GET).index("u'gender'"):
                 #     print "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"
                 # else:
