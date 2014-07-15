@@ -39,10 +39,10 @@ class MainHandler(webapp2.RequestHandler):
             gender = self.request.GET["gender"]
             mood = self.request.GET["mood"]
             second_page = '''<h3>Please Verify Your Information Below</h3>
-        <p>Name: ''' + {first_name} + {last_name} + '''</p>
-        <p>Email: ''' + {email} + '''</p>
-        <p>Gender: ''' + {gender} + '''</p>
-        <p>Mood: ''' + {mood} + '''</p>
+        <p>Name: ''' + first_name + last_name + '''</p>
+        <p>Email: ''' + email + '''</p>
+        <p>Gender: ''' + gender + '''</p>
+        <p>Mood: ''' + mood + '''</p>
         '''
             self.response.write(page_head + second_page + page_close)
         else:
