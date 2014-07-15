@@ -72,13 +72,14 @@ class MainHandler(webapp2.RequestHandler):  # Single class to handle all the fun
                 <input type="button" value="Thats Correct" />
                 </section>
                 """
+                #  This is the code that concatenates the partial HTML pages and publishes to the browser.
                 self.response.write(self.page_head + self.second_page + self.page_close)
-            else:
+            else:  # If they submit a blank request, this populates the page with an error message
                 self.response.write(self.page_head + self.error + self.first_page + self.page_close)
-        else:
+        else:  # If no request has been made, an initial page with blank fields is populated
             self.response.write(self.page_head + self.first_page + self.page_close)
 
-
+# Dont touch this, its magical and we dont need to know what it does.
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
 ], debug=True)
