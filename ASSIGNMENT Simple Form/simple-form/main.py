@@ -6,6 +6,7 @@ Simple Form
 """
 import webapp2  # Import the WebApp app
 
+
 class MainHandler(webapp2.RequestHandler):  # Single class to handle all the functions of the app
 
 
