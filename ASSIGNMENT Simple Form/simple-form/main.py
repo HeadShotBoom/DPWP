@@ -10,12 +10,12 @@ class MainHandler(webapp2.RequestHandler):
 
 
     def get(self):
-        p = Page()
-        self.response.write(p.print_out())
+        # p = Page()
+        # self.response.write(p.print_out())
 
 
-class Page(object):
-    def __init__(self):
+# class Page(object):
+#     def __init__(self):
         self.css = "css/styles.css"
 
         self.page_head = '''<!DOCTYPE HTML>
@@ -46,11 +46,11 @@ class Page(object):
     </body>
 </html>'''
         if self.request.GET:
-            # first_name = self.request.GET["first"]
-            # last_name = self.request.GET["last"]
-            # email = self.request.GET["email"]
-            # gender = self.request.GET["gender"]
-            # mood = self.request.GET["mood"]
+            first_name = self.request.GET["first"]
+            last_name = self.request.GET["last"]
+            email = self.request.GET["email"]
+            gender = self.request.GET["gender"]
+            mood = self.request.GET["mood"]
             self.second_page = '''<h3>Please Verify Your Information Below</h3>
         <p>Name: ''' + first_name + " " + last_name + '''</p>
         <p>Email: ''' + email + '''</p>
