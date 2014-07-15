@@ -29,12 +29,6 @@ class MainHandler(webapp2.RequestHandler):
             </select>
             <input type="submit" value="Submit" />
         </form>'''
-        second_page = '''<h3>Please Verify Your Information Below</h3>
-        <p>Name: {first_name} {last_name}</p>
-        <p>Email: {email}</p>
-        <p>Gender: {gender}</p>
-        <p>Mood: {mood}</p>
-        '''
         page_close = '''
     </body>
 </html>'''
@@ -44,6 +38,12 @@ class MainHandler(webapp2.RequestHandler):
             email = self.request.GET["email"]
             gender = self.request.GET["gender"]
             mood = self.request.GET["mood"]
+            second_page = '''<h3>Please Verify Your Information Below</h3>
+        <p>Name: ''' + {first_name} + {last_name} + '''</p>
+        <p>Email: ''' + {email} + '''</p>
+        <p>Gender: ''' + {gender} + '''</p>
+        <p>Mood: ''' + {mood} + '''</p>
+        '''
             self.response.write(page_head + second_page + page_close)
         else:
             self.response.write(page_head + first_page + page_close)
