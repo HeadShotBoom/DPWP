@@ -1,3 +1,52 @@
 html {
     background-color: #CECECE;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 10px;
+    height: 100%;
+    background-image: url("../images/background.png");
+    background-size: cover;
+}
+section {
+    width: 50%;
+    margin: 10px auto;
+    background-color: rgba(77, 96, 45, 0.7);
+    border: 1px solid black;
+    padding: 10px;
+}
+section form {
+    margin-left: 15px;
+}
+form {
+    width: 100%;
+}
+label, select {
+    display: block;
+}
+label, p, h3 {
+    color: white;
+}
+h1 {
+    font-size: 200%;
+}
+input[type=text] {
+    width: 50%;
+}
+input.push {
+    margin-left: 32px;
+}
+h1.error {
+    padding: 10px;
+    text-align: center;
+    color: red;
+    width:60%;
+    margin: 10px auto;
+    background-color: black;
+}
+img {
+    max-width: 100%;
+    margin-left: 42%;
 }
