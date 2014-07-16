@@ -1,3 +1,5 @@
+from cameras import Cameras
+
 class Page(object):
 
     def __init__(self):
@@ -32,10 +34,6 @@ class Page(object):
         self.__camera = "Not a Camera"
 
     def update(self):
-        if self.__camera == "Not a Camera":
-            self.__display = "<h1>No Change</h1>"
-        else:
-            self.__display = "<h1>Your selected camera is " + self.camera + "</h1>"
         self.whole_page = self.head + self.body + self.display + self.close
         self.whole_page = self.whole_page.format(**locals())
 

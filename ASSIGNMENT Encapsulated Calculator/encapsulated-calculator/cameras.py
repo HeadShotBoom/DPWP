@@ -1,5 +1,6 @@
 class Cameras(object):
     def __init__(self):
+        self.name = ""
         self.body_cost = 0
         self.lens_cost = 0
         self.accessories_cost = 0
