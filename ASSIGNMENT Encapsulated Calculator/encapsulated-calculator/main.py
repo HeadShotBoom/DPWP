@@ -16,6 +16,7 @@ class MainHandler(webapp2.RequestHandler):
         c1.lens_cost = 500
         c1.accessories_cost = 100
         c1.quality = "High"
+        c1.value = 50
 
         c2 = Cameras()
         c2.name = "Nikon D800"
@@ -47,6 +48,7 @@ class MainHandler(webapp2.RequestHandler):
 
         all_these_cameras = [c1, c2, c3, c4, c5]
 
+
         if "cameras" in self.request.GET:
             p.camera = self.request.GET["cameras"]
             if p.camera == "c1":
@@ -61,8 +63,11 @@ class MainHandler(webapp2.RequestHandler):
                 this_camera = 4
             else:
                 pass
-            p.display = all_these_cameras[this_camera].value
-            print p.display
+            p.display = str(all_these_cameras[this_camera].value)
+            if all_these_cameras[this_camera].value > 1000:
+                p.css = "css/styles2.css"
+            else:
+                p.css = "css/styles.css"
             self.response.write(p.whole_page)
         else:
             self.response.write(p.whole_page)
