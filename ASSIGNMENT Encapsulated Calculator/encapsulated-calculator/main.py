@@ -9,7 +9,8 @@ class MainHandler(webapp2.RequestHandler):
         p = Page()
         p.title = "Encapsulated Calculator"
         p.css = "css/styles.css"
-        # p.camera = self.request.GET["camera"]
+        p.camera = self.request.GET["cameras"]
+        print p.camera
         self.response.write(p.whole_page)
 
         c1 = Cameras()

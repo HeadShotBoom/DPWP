@@ -21,10 +21,14 @@ class Page(object):
         <a href="?cameras=c4">c4</a><br/>
         <a href="?cameras=c5">c5</a><br/>
         """
+
+        self.__display = ""
+
         self.close = """
     </body>
 </html>"""
         self.whole_page = ""
+        self.__camera = "Not a Camera"
 
     def update(self):
         self.whole_page = self.head + self.body + self.close
@@ -56,3 +60,19 @@ class Page(object):
     def css(self, new_css):
         self.__css = new_css
         self.update()
+
+    @property
+    def display(self):
+        return self.__display
+
+    @display.setter
+    def display(self, new_display):
+        self.__display = new_display
+
+    @property
+    def camera(self):
+        return self.__camera
+
+    @camera.setter
+    def camera(self, new_camera):
+        self.__camera = new_camera
