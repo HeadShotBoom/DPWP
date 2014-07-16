@@ -9,8 +9,6 @@ class MainHandler(webapp2.RequestHandler):
         p = Page()
         p.title = "Encapsulated Calculator"
         p.css = "css/styles.css"
-        p.camera = self.request.GET["cameras"]
-        print p.camera
         self.response.write(p.whole_page)
 
         c1 = Cameras()
@@ -42,6 +40,12 @@ class MainHandler(webapp2.RequestHandler):
         c5.lens_cost = 5000
         c5.accessories_cost = 1100
         c5.quality = "Low"
+
+        if "cameras" in self.request.GET:
+            p.camera = self.request.GET["cameras"]
+            print p.camera
+        else:
+            print p.camera
 
 
 
