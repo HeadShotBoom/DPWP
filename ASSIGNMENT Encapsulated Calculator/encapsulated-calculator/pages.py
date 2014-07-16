@@ -13,7 +13,14 @@ class Page(object):
     <body>
         """
 
-        self.__body = "This should not be here"
+
+        self.__body = """
+        <a href="?cameras=c1">c1</a><br/>
+        <a href="?cameras=c2">c2</a><br/>
+        <a href="?cameras=c3">c3</a><br/>
+        <a href="?cameras=c4">c4</a><br/>
+        <a href="?cameras=c5">c5</a><br/>
+        """
         self.close = """
     </body>
 </html>"""
