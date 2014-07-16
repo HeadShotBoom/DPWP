@@ -2,14 +2,15 @@ import webapp2
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+
         # Tommy's Grades
         t = Transcript()
         t.grade1 = 90
         t.grade2 = 100
         t.quiz1 = 75
         t.quiz2 = 99
-        print t.__final_grade
+        t.final_grade = 99
+        self.response.write("Tommy's Final grade is " + str(t.final_grade))
 
         # Sallys Grades
         s = Transcript()
@@ -17,6 +18,8 @@ class MainHandler(webapp2.RequestHandler):
         s.grade2 = 80
         s.quiz1 = 66
         s.quiz2 = 76
+        s.calc_grade()
+        self.response.write("<br /> Sally's Final Grade is " + str(s.final_grade))
 
 class Transcript(object):
     def __init__(self):
@@ -26,6 +29,18 @@ class Transcript(object):
         self.quiz2 = 0
         self.final_exam = 0
         self.__final_grade = 0  # Two underscores make it private
+
+    @property
+    def final_grade(self):
+        return self.__final_grade
+
+    @final_grade.setter
+    def final_grade(self, new_final_grade):
+        self.__final_grade = new_final_grade
+
+    def calc_grade(self):
+        self.__final_grade = (self.grade1 + self.grade2 + self.quiz1 + self.quiz2 + self.final_exam)/5
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
