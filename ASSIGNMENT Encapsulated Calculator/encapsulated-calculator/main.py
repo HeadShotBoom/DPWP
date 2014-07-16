@@ -41,12 +41,13 @@ class MainHandler(webapp2.RequestHandler):
         c5.accessories_cost = 1100
         c5.quality = "Low"
 
+        p.all_cameras = c1, c2, c3, c4, c5
+
         if "cameras" in self.request.GET:
             p.camera = self.request.GET["cameras"]
             print p.camera
         else:
             print p.camera
-
 
 
 app = webapp2.WSGIApplication([

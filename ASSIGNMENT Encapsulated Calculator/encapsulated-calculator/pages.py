@@ -3,6 +3,7 @@ class Page(object):
     def __init__(self):
         self.__title = "This Shouldent Be Here"
         self.__css = "ERROR"
+        self.__all_cameras = "ERROR"
         self.head = """
 <!DOCTYPE HTML>
 <html>
@@ -22,6 +23,9 @@ class Page(object):
         <a href="?cameras=c5">c5</a><br/>
         """
 
+        # if self.__camera == "c1":
+        #     self.__display = ''' Value of body {c1.body_cost}'''
+
         self.__display = ""
 
         self.close = """
@@ -30,8 +34,10 @@ class Page(object):
         self.whole_page = ""
         self.__camera = "Not a Camera"
 
+
+
     def update(self):
-        self.whole_page = self.head + self.body + self.close
+        self.whole_page = self.head + self.body + self.display + self.close
         self.whole_page = self.whole_page.format(**locals())
 
     @property
@@ -76,3 +82,11 @@ class Page(object):
     @camera.setter
     def camera(self, new_camera):
         self.__camera = new_camera
+
+    @property
+    def all_cameras(self):
+        return self.__all_cameras
+
+    @all_cameras.setter
+    def all_cameras(self, new_cameras):
+        self.__all_cameras = new_cameras
