@@ -23,10 +23,7 @@ class Page(object):
         <a href="?cameras=c5">c5</a><br/>
         """
 
-        # if self.__camera == "c1":
-        #     self.__display = ''' Value of body {c1.body_cost}'''
-
-        self.__display = ""
+        self.__display = "Placeholder"
 
         self.close = """
     </body>
@@ -34,7 +31,10 @@ class Page(object):
         self.whole_page = ""
         self.__camera = "Not a Camera"
 
-
+        if self.__camera == "Not a Camera":
+            self.__display = "No Change"
+        else:
+            self.__display = "<h1>ERROR</h1>"
 
     def update(self):
         self.whole_page = self.head + self.body + self.display + self.close
@@ -74,6 +74,7 @@ class Page(object):
     @display.setter
     def display(self, new_display):
         self.__display = new_display
+        self.update()
 
     @property
     def camera(self):
@@ -82,6 +83,7 @@ class Page(object):
     @camera.setter
     def camera(self, new_camera):
         self.__camera = new_camera
+        self.update()
 
     @property
     def all_cameras(self):
