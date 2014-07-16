@@ -1,3 +1,46 @@
 html {
-    background-color: red;
+    background: #cecece;
+}
+body {
+    margin: 1px auto;
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    height: 1000px;
+}
+section {
+    width:65%;
+    margin:10px auto;
+    background: rgba(255, 255, 255, 0.7 );
+}
+
+@media (min-width: 1466px) and (min-height: 825px) {
+    body {
+        width: 1466px;
+        height: 825px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -733px; /* half of the width */
+        margin-top: -412px; /* half of the height */
+    }
+}
+
+@media (min-width: 1466px) and (max-height: 825px) {
+    body {
+        width: 1466px;
+        height: 825px;
+        position: absolute;
+        left: 50%;
+        margin-left: -733px; /* half of the width */
+    }
+}
+
+@media (max-width: 1466px) and (min-height: 825px) {
+    body {
+        width: 1466px;
+        height: 825px;
+        position: absolute;
+        top: 50%;
+        margin-top: -412px; /* half of the height */
+    }
 }

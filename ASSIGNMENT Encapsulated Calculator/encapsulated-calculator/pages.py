@@ -3,7 +3,7 @@ class Page(object):
     def __init__(self):
         self.__title = "This Shouldent Be Here"
         self.__css = "ERROR"
-        self.__all_cameras = "ERROR"
+        self.__current_camera = "ERROR"
         self.head = """
 <!DOCTYPE HTML>
 <html>
@@ -15,7 +15,7 @@ class Page(object):
         """
 
 
-        self.__body = """
+        self.__body = """<section><img src="images/logo.png" alt="Store Logo" />
         <a href="?cameras=c1">c1</a><br/>
         <a href="?cameras=c2">c2</a><br/>
         <a href="?cameras=c3">c3</a><br/>
@@ -23,7 +23,7 @@ class Page(object):
         <a href="?cameras=c5">c5</a><br/>
         """
 
-        self.__display = "Placeholder"
+        self.__display = ""
 
         self.close = """
     </body>
@@ -66,6 +66,7 @@ class Page(object):
     def display(self):
         return self.__display
 
+
     @display.setter
     def display(self, new_display):
         self.__display = new_display
@@ -81,9 +82,20 @@ class Page(object):
         self.update()
 
     @property
-    def all_cameras(self):
-        return self.__all_cameras
+    def current_camera(self):
+        return self.__current_camera
 
-    @all_cameras.setter
-    def all_cameras(self, new_cameras):
-        self.__all_cameras = new_cameras
+    @current_camera.setter
+    def current_camera(self, new_cameras):
+        self.__current_camera = new_cameras
+        self.__display = """<p>Current Camera Name is: {self.current_camera.name} </p>
+        <p>The Body price in this package is: {self.current_camera.body_cost}</p>
+        <p>Current Camera Package Lens Value: {self.current_camera.lens_cost}</p>
+        <p>Current Camera Package Accessories Cost: {self.current_camera.accessories_cost}</p>
+        <p>The reviews have said the quality of this camera is {self.current_camera.quality}.</p>
+        <p>The Calculated Value of this total package is: {self.current_camera.value}</p>
+        </section>
+        """
+        self.update()
+
+

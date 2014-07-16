@@ -16,7 +16,7 @@ class MainHandler(webapp2.RequestHandler):
         c1.lens_cost = 500
         c1.accessories_cost = 100
         c1.quality = "High"
-        c1.value = 50
+        c1.calc_value()
 
         c2 = Cameras()
         c2.name = "Nikon D800"
@@ -24,6 +24,7 @@ class MainHandler(webapp2.RequestHandler):
         c2.lens_cost = 1500
         c2.accessories_cost = 100
         c2.quality = "Low"
+        c2.calc_value()
 
         c3 = Cameras()
         c3.name = "Leica M9"
@@ -31,6 +32,7 @@ class MainHandler(webapp2.RequestHandler):
         c3.lens_cost = 500
         c3.accessories_cost = 100
         c3.quality = "Medium"
+        c3.calc_value()
 
         c4 = Cameras()
         c4.name = "Pentax P&S"
@@ -38,6 +40,7 @@ class MainHandler(webapp2.RequestHandler):
         c4.lens_cost = 5000
         c4.accessories_cost = 100
         c4.quality = "High"
+        c4.calc_value()
 
         c5 = Cameras()
         c5.name = "GoPro Hero5 Platinum"
@@ -45,6 +48,7 @@ class MainHandler(webapp2.RequestHandler):
         c5.lens_cost = 5000
         c5.accessories_cost = 1100
         c5.quality = "Low"
+        c5.calc_value()
 
         all_these_cameras = [c1, c2, c3, c4, c5]
 
@@ -63,8 +67,8 @@ class MainHandler(webapp2.RequestHandler):
                 this_camera = 4
             else:
                 pass
-            p.display = str(all_these_cameras[this_camera].value)
-            if all_these_cameras[this_camera].value > 1000:
+            p.current_camera = all_these_cameras[this_camera]
+            if all_these_cameras[this_camera].value < 1000:
                 p.css = "css/styles2.css"
             else:
                 p.css = "css/styles.css"
