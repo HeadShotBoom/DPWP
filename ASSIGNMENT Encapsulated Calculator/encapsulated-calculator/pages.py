@@ -31,12 +31,11 @@ class Page(object):
         self.whole_page = ""
         self.__camera = "Not a Camera"
 
-        if self.__camera == "Not a Camera":
-            self.__display = "No Change"
-        else:
-            self.__display = "<h1>ERROR</h1>"
-
     def update(self):
+        if self.__camera == "Not a Camera":
+            self.__display = "<h1>No Change</h1>"
+        else:
+            self.__display = "<h1>Your selected camera is " + self.camera + "</h1>"
         self.whole_page = self.head + self.body + self.display + self.close
         self.whole_page = self.whole_page.format(**locals())
 

@@ -9,7 +9,6 @@ class MainHandler(webapp2.RequestHandler):
         p = Page()
         p.title = "Encapsulated Calculator"
         p.css = "css/styles.css"
-        self.response.write(p.whole_page)
 
         c1 = Cameras()
         c1.body_cost = 1000
@@ -41,13 +40,12 @@ class MainHandler(webapp2.RequestHandler):
         c5.accessories_cost = 1100
         c5.quality = "Low"
 
-        p.all_cameras = c1, c2, c3, c4, c5
-
         if "cameras" in self.request.GET:
             p.camera = self.request.GET["cameras"]
-            print p.camera
+            self.response.write(p.whole_page)
         else:
-            print p.camera
+            self.response.write(p.whole_page)
+
 
 
 app = webapp2.WSGIApplication([
