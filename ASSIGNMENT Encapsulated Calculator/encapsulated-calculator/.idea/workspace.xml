@@ -26,8 +26,8 @@
       <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.653847" vertical-offset="525" max-vertical-offset="1245">
-              <caret line="76" column="4" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="4" />
+            <state vertical-scroll-proportion="-15.576923" vertical-offset="525" max-vertical-offset="1245">
+              <caret line="62" column="25" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -36,8 +36,8 @@
       <file leaf-file-name="pages.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6041667" vertical-offset="45" max-vertical-offset="1875">
-              <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.71849865" vertical-offset="364" max-vertical-offset="1755">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -46,8 +46,8 @@
       <file leaf-file-name="cameras.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cameras.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="480">
-              <caret line="26" column="86" selection-start-line="26" selection-start-column="85" selection-end-line="26" selection-end-column="86" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+              <caret line="26" column="85" selection-start-line="26" selection-start-column="85" selection-end-line="26" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -539,26 +539,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/cameras.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.653847" vertical-offset="525" max-vertical-offset="1245">
-          <caret line="76" column="4" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+          <caret line="26" column="85" selection-start-line="26" selection-start-column="85" selection-end-line="26" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cameras.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.0" vertical-offset="0" max-vertical-offset="480">
-          <caret line="26" column="86" selection-start-line="26" selection-start-column="85" selection-end-line="26" selection-end-column="86" />
+        <state vertical-scroll-proportion="-15.576923" vertical-offset="525" max-vertical-offset="1245">
+          <caret line="62" column="25" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6041667" vertical-offset="45" max-vertical-offset="1875">
-          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.71849865" vertical-offset="364" max-vertical-offset="1755">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding />
         </state>
       </provider>
