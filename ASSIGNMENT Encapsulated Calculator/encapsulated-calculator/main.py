@@ -53,29 +53,16 @@ class MainHandler(webapp2.RequestHandler):
         all_these_cameras = [c1, c2, c3, c4, c5]
 
 
+
         if "cameras" in self.request.GET:
-            p.camera = self.request.GET["cameras"]
-            if p.camera == "c1":
-                this_camera = 0
-            elif p.camera == "c2":
-                this_camera = 1
-            elif p.camera == "c3":
-                this_camera = 2
-            elif p.camera == "c4":
-                this_camera = 3
-            elif p.camera == "c5":
-                this_camera = 4
-            else:
-                pass
-            p.current_camera = all_these_cameras[this_camera]
-            if all_these_cameras[this_camera].value < 1000:
+            p.current_camera = all_these_cameras[int(self.request.GET["cameras"])]
+            if all_these_cameras[int(self.request.GET["cameras"])].value < 1000:
                 p.css = "css/styles2.css"
             else:
                 p.css = "css/styles.css"
             self.response.write(p.whole_page)
         else:
             self.response.write(p.whole_page)
-
 
 
 app = webapp2.WSGIApplication([

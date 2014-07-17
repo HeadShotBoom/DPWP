@@ -9,8 +9,47 @@ body {
 }
 section {
     width:65%;
-    margin:10px auto;
-    background: rgba(255, 255, 255, 0.7 );
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.85 );
+}
+ul {
+    width:100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+    width: 20%;
+}
+
+a:link, a:visited {
+    display: block;
+    width: 100%;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #98bf21;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover, a:active {
+    background-color: #7A991A;
+}
+
+article {
+    margin-left: 20px;
+}
+
+h1.Home {
+    color: red;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    text-align: center;
 }
 
 @media (min-width: 1466px) and (min-height: 825px) {

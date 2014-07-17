@@ -16,15 +16,17 @@ class Page(object):
 
 
         self.__body = """<section><img src="images/logo.png" alt="Store Logo" />
-        <a href="?cameras=c1">c1</a><br/>
-        <a href="?cameras=c2">c2</a><br/>
-        <a href="?cameras=c3">c3</a><br/>
-        <a href="?cameras=c4">c4</a><br/>
-        <a href="?cameras=c5">c5</a><br/>
+        <ul>
+            <li><a href="?cameras=0">Camera Package 1</a></li>
+            <li><a href="?cameras=1">Camera Package 2</a></li>
+            <li><a href="?cameras=2">Camera Package 3</a></li>
+            <li><a href="?cameras=3">Camera Package 4</a></li>
+            <li><a href="?cameras=4">Camera Package 5</a></li>
+        </ul>
         """
 
-        self.__display = ""
-
+        self.__display = "<h1 class='Home'>Click One of Our Packages to See Our Current Deals</h1><br/>"
+        self.__deal = ""
         self.close = """
     </body>
 </html>"""
@@ -88,12 +90,13 @@ class Page(object):
     @current_camera.setter
     def current_camera(self, new_cameras):
         self.__current_camera = new_cameras
-        self.__display = """<p>Current Camera Name is: {self.current_camera.name} </p>
-        <p>The Body price in this package is: {self.current_camera.body_cost}</p>
-        <p>Current Camera Package Lens Value: {self.current_camera.lens_cost}</p>
-        <p>Current Camera Package Accessories Cost: {self.current_camera.accessories_cost}</p>
+        self.__display = """<article><p>Current Camera Name is: {self.current_camera.name} </p>
+        <p>The Body price in this package is: ${self.current_camera.body_cost}</p>
+        <p>Current Camera Package Lens Value: ${self.current_camera.lens_cost}</p>
+        <p>Current Camera Package Accessories Cost: ${self.current_camera.accessories_cost}</p>
         <p>The reviews have said the quality of this camera is {self.current_camera.quality}.</p>
-        <p>The Calculated Value of this total package is: {self.current_camera.value}</p>
+        <p>The Calculated Value of this total package is: ${self.current_camera.value}</p><br/>
+        </article>
         </section>
         """
         self.update()
