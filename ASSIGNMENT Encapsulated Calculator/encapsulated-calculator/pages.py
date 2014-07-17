@@ -1,9 +1,13 @@
+# Establishes the Page class
 class Page(object):
-
+    # Initalizes the page class
     def __init__(self):
+        # These are private variables that can only be modified from outside the class through the use of a setter
         self.__title = "This Shouldent Be Here"
         self.css = "css/styles.css"
+        # Error is a placeholder in this variable, it will be replaced by a function below.
         self.__current_camera = "ERROR"
+        # This variable holds the first part of my HTML code.
         self.head = """
 <!DOCTYPE HTML>
 <html>
