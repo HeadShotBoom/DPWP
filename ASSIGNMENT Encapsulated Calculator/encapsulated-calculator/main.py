@@ -13,6 +13,8 @@ class MainHandler(webapp2.RequestHandler):
         p.title = "Encapsulated Calculator"
         p.css = "css/styles.css"
 
+        # c1 uses the Cameras class to assemble an object with the following attributes and sets their values
+        # c2=c5 is identical in function
         c1 = Cameras()
         c1.name = "Canon 5d3"
         c1.body_cost = 3000
@@ -53,17 +55,23 @@ class MainHandler(webapp2.RequestHandler):
         c5.quality = "Low"
         c5.calc_value()
 
+        # This establishes a variable that consolisates all c1-c5 objects
         all_these_cameras = [c1, c2, c3, c4, c5]
 
 
-
+        # Checks if there is an instance of "cameras" in the request pushed from the browser
         if "cameras" in self.request.GET:
+            # Uses a value in the request to determine which cX object I am requesting
+            # and sets just that object to the current_camera variable in Page class.
             p.current_camera = all_these_cameras[int(self.request.GET["cameras"])]
+            # Writes the entire contents of whole_page variable in Page class to the browser
             self.response.write(p.whole_page)
         else:
+            # Writes the info to the browser even if a request hasnt been made.
             self.response.write(p.whole_page)
 
 
+# This is Magic, don't touch this or Rebbecca will be MAD!!!
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
 ], debug=True)
