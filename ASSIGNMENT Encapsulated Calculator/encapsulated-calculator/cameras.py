@@ -1,4 +1,6 @@
+# Establishes Cameras Class
 class Cameras(object):
+    # Initializes Class
     def __init__(self):
         self.name = ""
         self.body_cost = 0
@@ -14,8 +16,9 @@ class Cameras(object):
     @value.setter
     def value(self, new_value):
         self.__value = new_value
-
+    # Function that calculates the value based on other camera values
     def calc_value(self):
+        # Checks the quality attribute and sets a divider variable based on the response
         if self.quality == "High":
             divider = 1
         elif self.quality == "Medium":
@@ -24,4 +27,5 @@ class Cameras(object):
             divider = 3
         else:
             divider = 10
+        # Math
         self.__value = (self.body_cost + self.lens_cost + self.accessories_cost)/divider
