@@ -1,11 +1,13 @@
-
+# The following lines control what elements get imported into the page
 import webapp2
+# This imports the Page class from the pages.py file The following line does something similar.
 from pages import Page
 from cameras import Cameras
 
-
+# This is my main class that interacts with the browser and receives requests.
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        # Establishes p as referring to the Page class
         p = Page()
         p.title = "Encapsulated Calculator"
         p.css = "css/styles.css"
