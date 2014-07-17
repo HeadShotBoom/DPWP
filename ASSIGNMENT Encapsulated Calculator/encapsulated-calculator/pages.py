@@ -2,7 +2,7 @@ class Page(object):
 
     def __init__(self):
         self.__title = "This Shouldent Be Here"
-        self.__css = "ERROR"
+        self.css = "css/styles.css"
         self.__current_camera = "ERROR"
         self.head = """
 <!DOCTYPE HTML>
@@ -56,15 +56,6 @@ class Page(object):
         self.update()
 
     @property
-    def css(self):
-        return self.__css
-
-    @css.setter
-    def css(self, new_css):
-        self.__css = new_css
-        self.update()
-
-    @property
     def display(self):
         return self.__display
 
@@ -90,13 +81,34 @@ class Page(object):
     @current_camera.setter
     def current_camera(self, new_cameras):
         self.__current_camera = new_cameras
+        if self.current_camera.lens_cost >= 0 and self.current_camera.lens_cost <= 500:
+            self.lens_package = "images/lenses_small.jpg"
+        elif self.current_camera.lens_cost > 500 and self.current_camera.lens_cost <= 2000:
+            self.lens_package = "images/lenses_medium.jpg"
+        else:
+            self.lens_package = "images/lenses_large.jpg"
+
+        if self.current_camera.accessories_cost >= 0 and self.current_camera.accessories_cost <= 50:
+            self.accessories_package = "images/accessories_small.jpg"
+        elif self.current_camera.accessories_cost > 50 and self.current_camera.accessories_cost <= 200:
+            self.accessories_package = "images/accessories_medium.jpg"
+        else:
+            self.accessories_package = "images/accessories_large.png"
+
         self.__display = """<article><p>Current Camera Name is: {self.current_camera.name} </p>
         <p>The Body price in this package is: ${self.current_camera.body_cost}</p>
         <p>Current Camera Package Lens Value: ${self.current_camera.lens_cost}</p>
         <p>Current Camera Package Accessories Cost: ${self.current_camera.accessories_cost}</p>
         <p>The reviews have said the quality of this camera is {self.current_camera.quality}.</p>
         <p>The Calculated Value of this total package is: ${self.current_camera.value}</p><br/>
+        <img class='deal' src='images/great_deal.jpg' alt='great deal logo' />
         </article>
+        <aside>
+        <img class='aside' src='images/{self.current_camera.name}.jpg' alt='Camera Body' />
+        <div><img class='article' src='{self.lens_package}' alt='Lens Pic' />
+        <img class='article' src='{self.accessories_package}' alt='Lens Pic' /></div>
+
+        </aside>
         </section>
         """
         self.update()
