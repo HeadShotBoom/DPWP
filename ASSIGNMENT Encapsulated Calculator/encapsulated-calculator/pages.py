@@ -37,16 +37,22 @@ class Page(object):
         # This variable is used to store all of the HTML code. It will be compiled by the update function
         self.whole_page = ""
 
+    # This is used to concatenate all HTML sections that need to be pushed to the page
     def update(self):
         self.whole_page = self.head + self.body + self.display + self.close
+        # This checks for and { } references and changes them to the appropriate value from its variable
         self.whole_page = self.whole_page.format(**locals())
 
+    # Getter for the private body variable
     @property
     def body(self):
+        # This simply publishes the variable to whomever requested it
         return self.__body
 
+    # Setter for private Body variable
     @body.setter
     def body(self, new_body):
+        # This sets the value of the variable to the newly passed in information
         self.__body = new_body
         self.update()
 
@@ -76,20 +82,22 @@ class Page(object):
     @current_camera.setter
     def current_camera(self, new_cameras):
         self.__current_camera = new_cameras
+        # This is a conditional statement that checks the value of the lens cost and sets
+        # an image path to the lens_package variable so it can be dynamically called later
         if self.current_camera.lens_cost >= 0 and self.current_camera.lens_cost <= 500:
             self.lens_package = "images/lenses_small.jpg"
         elif self.current_camera.lens_cost > 500 and self.current_camera.lens_cost <= 2000:
             self.lens_package = "images/lenses_medium.jpg"
         else:
             self.lens_package = "images/lenses_large.jpg"
-
+        # This does the same as the above conditional for camera accessories
         if self.current_camera.accessories_cost >= 0 and self.current_camera.accessories_cost <= 50:
             self.accessories_package = "images/accessories_small.jpg"
         elif self.current_camera.accessories_cost > 50 and self.current_camera.accessories_cost <= 200:
             self.accessories_package = "images/accessories_medium.jpg"
         else:
             self.accessories_package = "images/accessories_large.png"
-
+        # This publishes information to the display variable based on the dynamically chosen camera.
         self.__display = """<article><p>Current Camera Name is: {self.current_camera.name} </p>
         <p>The Body price in this package is: ${self.current_camera.body_cost}</p>
         <p>Current Camera Package Lens Value: ${self.current_camera.lens_cost}</p>
@@ -106,6 +114,7 @@ class Page(object):
         </aside>
         </section>
         """
+        # This runs the update function
         self.update()
 
 
