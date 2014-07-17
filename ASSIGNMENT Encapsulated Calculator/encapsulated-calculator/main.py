@@ -9,6 +9,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         # Establishes p as referring to the Page class
         p = Page()
+        # p.title uses the title setter in the Page class to set the value of title, the line below is similar
         p.title = "Encapsulated Calculator"
         p.css = "css/styles.css"
 
