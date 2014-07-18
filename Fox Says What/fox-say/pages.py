@@ -18,6 +18,10 @@ class Page(object):
 
         # Second part of my HTML code, this holds the Navigation for my page.
         self.__body = """
+            <img class='background'  src='images/background.jpg' alt='background image' />
+            <img class='welcome' src='images/welcome.png' alt='Welcome to the Jungle' />
+            <h1>Welcome to the Jungle!</h1>
+            <h3>Select an Animal to learn more.</h3>
             <ul>
                 <li><a href="?animal=0">Komodo Dragon</a></li>
                 <li><a href="?animal=1">Hummingbird</a></li>
@@ -28,7 +32,7 @@ class Page(object):
         self.__display = """
             <h1 class='Home'>Click One of Animals to Learn More</h1><br/>
             """
-        self.__loud_noises = ""
+        self.__loud_noises = "<audio autoplay src='audio/jungle.mp3' />"
         # This is the closing section of my HTML, it will not be changed
         self.close = """
     </body>
