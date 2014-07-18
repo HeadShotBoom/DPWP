@@ -36,20 +36,6 @@ class Page(object):
         self.whole_page = ""
         self.__section = ""
 
-        if self.__current_animal != "ERROR":
-            self.__section = """
-            <img src="{self.current_animal.url}" alt="Image of {self.current_animal.name}" />
-            <p>{self.current_animal.name}</p>
-            <p>{self.current_animal.phylum}</p>
-            <p>{self.current_animal.klass}</p>
-            <p>{self.current_animal.family}</p>
-            <p>{self.current_animal.genus}</p>
-            <p>{self.current_animal.lifespan}</p>
-            <p>{self.current_animal.habitat}</p>
-            <p>{self.current_animal.geolocation}</p>
-            """
-
-
         # This is used to concatenate all HTML sections that need to be pushed to the page
     def update(self):
         self.whole_page = self.head + self.__body + self.__section + self.close
@@ -72,6 +58,21 @@ class Page(object):
     @current_animal.setter
     def current_animal(self, new_animal):
         self.__current_animal = new_animal
+        if self.__current_animal != "ERROR":
+            self.__section = """
+            <img src="{self.current_animal.url}" alt="Image of {self.current_animal.name}" />
+            <p>{self.current_animal.name}</p>
+            <p>{self.current_animal.phylum}</p>
+            <p>{self.current_animal.klass}</p>
+            <p>{self.current_animal.family}</p>
+            <p>{self.current_animal.genus}</p>
+            <p>{self.current_animal.lifespan}</p>
+            <p>{self.current_animal.habitat}</p>
+            <p>{self.current_animal.geolocation}</p>
+            <audio autoplay loop src="{self.current_animal.sound}" />
+            """
+        else:
+            pass
         self.update()
 
     @property
