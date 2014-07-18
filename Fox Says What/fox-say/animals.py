@@ -42,3 +42,18 @@ class Bird(Animal):
         self.geolocation = "USA"
         self.sound = "audio/hummingbird.mp3"
 
+
+class Person(Animal):
+    def __init__(self):
+        Animal.__init__(self)
+
+        self.name = "Human Being"
+        self.phylum = "Chordata"
+        self.klass = "Mammalia"
+        self.family = "Hominidae"
+        self.genus = "Homo"
+        self.url = "images/human.jpg"
+        self.lifespan = "80"
+        self.habitat = "In Da Club"
+        self.geolocation = "On Da Pole"
+        self.sound = "audio/wrecking_ball.mp3"
