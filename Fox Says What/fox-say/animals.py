@@ -10,7 +10,11 @@ class Animal(object):
         self.lifespan = ""
         self.habitat = ""
         self.geolocation = ""
-        self.sound = "audio/jungle.mp3"
+        self.sound = self.loud_noises()
+
+    def loud_noises(self):
+        self.noise = "<audio autoplay src='audio/jungle.mp3' />"
+        return self.noise
 
 class Snake(Animal):
     def __init__(self):
@@ -25,7 +29,11 @@ class Snake(Animal):
         self.lifespan = "7 Years"
         self.habitat = "Zoo"
         self.geolocation = "Komodo Island"
-        self.sound = "audio/snake.mp3"
+        self.sound = self.loud_noises()
+
+    def loud_noises(self):
+        self.noise = "<audio autoplay src='audio/snake.mp3' />"
+        return self.noise
 
 class Bird(Animal):
     def __init__(self):
@@ -40,7 +48,11 @@ class Bird(Animal):
         self.lifespan = "5 Years"
         self.habitat = "The Sky"
         self.geolocation = "USA"
-        self.sound = "audio/hummingbird.mp3"
+        self.sound = self.loud_noises()
+
+    def loud_noises(self):
+        self.noise = "<audio autoplay src='audio/hummingbird.mp3' />"
+        return self.noise
 
 
 class Person(Animal):
@@ -56,4 +68,8 @@ class Person(Animal):
         self.lifespan = "80"
         self.habitat = "In Da Club"
         self.geolocation = "On Da Pole"
-        self.sound = "audio/wrecking_ball.mp3"
+        self.sound = self.loud_noises()
+
+    def loud_noises(self):
+        self.noise = "<audio autoplay src='audio/wrecking_ball.mp3' />"
+        return self.noise

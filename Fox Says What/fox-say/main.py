@@ -10,13 +10,17 @@ class MainHandler(webapp2.RequestHandler):
         a1 = Snake()
         a2 = Bird()
         a3 = Person()
-
+        a = Animal()
         self.animals = [a1, a2, a3]
 
         p = Page()
+        p.loud_noises = a.sound
+
+
         p.update()
         if "animal" in self.request.GET:
             p.current_animal = self.animals[int(self.request.GET["animal"])]
+            p.loud_noises = self.animals[int(self.request.GET["animal"])].sound
             self.response.write(p.whole_page)
         else:
             self.response.write(p.whole_page)

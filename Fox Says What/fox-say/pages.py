@@ -28,6 +28,7 @@ class Page(object):
         self.__display = """
             <h1 class='Home'>Click One of Animals to Learn More</h1><br/>
             """
+        self.__loud_noises = ""
         # This is the closing section of my HTML, it will not be changed
         self.close = """
     </body>
@@ -38,7 +39,7 @@ class Page(object):
 
         # This is used to concatenate all HTML sections that need to be pushed to the page
     def update(self):
-        self.whole_page = self.head + self.__body + self.__section + self.close
+        self.whole_page = self.head + self.__body + self.__section + self.__loud_noises + self.close
         # This checks for and { } references and changes them to the appropriate value from its variable
         self.whole_page = self.whole_page.format(**locals())
 
@@ -69,7 +70,6 @@ class Page(object):
             <p>{self.current_animal.lifespan}</p>
             <p>{self.current_animal.habitat}</p>
             <p>{self.current_animal.geolocation}</p>
-            <audio autoplay loop src="{self.current_animal.sound}" />
             """
         else:
             pass
@@ -84,4 +84,11 @@ class Page(object):
         self.__section = new_section
         self.update()
 
+    @property
+    def loud_noises(self):
+        return self.__loud_noises
 
+    @loud_noises.setter
+    def loud_noises(self, new_noise):
+        self.__loud_noises = new_noise
+        self.update()
