@@ -20,6 +20,7 @@ class MainHandler(webapp2.RequestHandler):
         p.update()
         if "animal" in self.request.GET:
             p.current_animal = self.animals[int(self.request.GET["animal"])]
+            p.title = self.animals[int(self.request.GET["animal"])].name
             p.loud_noises = self.animals[int(self.request.GET["animal"])].sound
             self.response.write(p.whole_page)
         else:

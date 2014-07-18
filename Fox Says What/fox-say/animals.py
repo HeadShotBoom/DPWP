@@ -32,7 +32,7 @@ class Snake(Animal):
         self.sound = self.loud_noises()
 
     def loud_noises(self):
-        self.noise = "<audio autoplay src='audio/snake.mp3' />"
+        self.noise = "<audio autoplay loop src='audio/snake.mp3' />"
         return self.noise
 
 class Bird(Animal):
@@ -51,7 +51,7 @@ class Bird(Animal):
         self.sound = self.loud_noises()
 
     def loud_noises(self):
-        self.noise = "<audio autoplay src='audio/hummingbird.mp3' />"
+        self.noise = "<audio autoplay loop src='audio/hummingbird.mp3' />"
         return self.noise
 
 
@@ -71,5 +71,5 @@ class Person(Animal):
         self.sound = self.loud_noises()
 
     def loud_noises(self):
-        self.noise = "<audio autoplay src='audio/wrecking_ball.mp3' />"
+        self.noise = "<audio autoplay loop src='audio/wrecking_ball.mp3' />"
         return self.noise
