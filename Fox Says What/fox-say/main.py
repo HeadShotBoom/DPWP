@@ -1,10 +1,25 @@
 
 import webapp2
 from animals import *
+from pages import Page
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+
+        a1 = Snake()
+        a2 = Bird()
+        a3 = Person()
+
+        self.animals = [a1, a2, a3]
+
+        p = Page()
+        p.update()
+        if "animal" in self.request.GET:
+            p.current_animal = self.animals[int(self.request.GET["animal"])]
+            self.response.write(p.whole_page)
+        else:
+            self.response.write(p.whole_page)
 
 
 
