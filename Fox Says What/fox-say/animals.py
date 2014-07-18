@@ -27,3 +27,18 @@ class Snake(Animal):
         self.geolocation = "Komodo Island"
         self.sound = "audio/snake.mp3"
 
+class Bird(Animal):
+    def __init__(self):
+        Animal.__init__(self)
+
+        self.name = "Hummingbird"
+        self.phylum = "Chordata"
+        self.klass = "Aves"
+        self.family = "Trochilidae"
+        self.genus = "Selasphorus"
+        self.url = "images/hummingbird.jpg"
+        self.lifespan = "5 Years"
+        self.habitat = "The Sky"
+        self.geolocation = "USA"
+        self.sound = "audio/hummingbird.mp3"
+
