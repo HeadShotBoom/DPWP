@@ -47,20 +47,7 @@ class Page(object):
             <p>{self.current_animal.lifespan}</p>
             <p>{self.current_animal.habitat}</p>
             <p>{self.current_animal.geolocation}</p>
-            
             """
-
-"""
-self.phylum = "Chordata"
-        self.klass = "Reptilia"
-        self.family = ""
-        self.genus = "Varanus"
-        self.url = "images/snake.png"
-        self.lifespan = "7 Years"
-        self.habitat = "Zoo"
-        self.geolocation = "Komodo Island"
-        self.sound = "audio/snake.mp3"
-"""
 
 
         # This is used to concatenate all HTML sections that need to be pushed to the page
