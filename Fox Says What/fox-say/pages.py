@@ -1,5 +1,5 @@
 class Page(object):
-    # Initalizes the page class
+    # Initializes the page class
     def __init__(self):
         # These are private variables that can only be modified from outside the class through the use of a setter
         self.__title = "Welcome to the Zoo"
@@ -46,6 +46,11 @@ class Page(object):
         # This checks for and { } references and changes them to the appropriate value from its variable
         self.whole_page = self.whole_page.format(**locals())
 
+    """
+    Below are getters (@property) and setters (@name.setter) They listen for updates to specific private variables and
+    run the predefined function. Sometimes they are used just to return a value. Sometimes I use them for more
+    complicated tasks.
+    """
     @property
     def title(self):
         return self.__title
@@ -63,6 +68,7 @@ class Page(object):
     def current_animal(self, new_animal):
         self.__current_animal = new_animal
         if self.__current_animal != "ERROR":
+            # This holds all the info found on the notecard on my page. It is generated based on animal selected.
             self.__section = """
             <section class="animal_pic">
                 <img class='animal' src="{self.current_animal.url}" alt="Image of {self.current_animal.name}" />
