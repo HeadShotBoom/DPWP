@@ -23,7 +23,7 @@ class Snake(Animal):
         self.name = "Kobra"
         self.phylum = "Chordata"
         self.klass = "Reptilia"
-        self.family = ""
+        self.family = "O'Carroll"
         self.genus = "Varanus"
         self.url = "images/snake.png"
         self.lifespan = "7"
