@@ -1,6 +1,7 @@
+# This is my abstract class. It initializes the attributes, I think
 class Animal(object):
     def __init__(self):
-
+        # These are the attributes common to all subclasses
         self.name = ""
         self.phylum = ""
         self.klass = ""
@@ -11,13 +12,15 @@ class Animal(object):
         self.habitat = ""
         self.geolocation = ""
         self.sound = self.loud_noises()
-
+    #This is my function to set the noise played when the page is loaded. This contains a default noise.
     def loud_noises(self):
         self.noise = "<audio autoplay src='audio/jungle.mp3' />"
         return self.noise
 
+# This is a subclass It pulls from the animal class and sets custom values for the attributes.
 class Snake(Animal):
     def __init__(self):
+        # Initalizing the "SUPER" class
         Animal.__init__(self)
 
         self.name = "Kobra"
@@ -30,7 +33,7 @@ class Snake(Animal):
         self.habitat = "the zoo"
         self.geolocation = "on Komodo Island"
         self.sound = self.loud_noises()
-
+    # My Polymorphic function replaceing the crap out of that noise.
     def loud_noises(self):
         self.noise = "<audio autoplay loop src='audio/snake.mp3' />"
         return self.noise
