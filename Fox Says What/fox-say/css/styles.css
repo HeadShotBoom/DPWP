@@ -24,7 +24,7 @@ h1 {
     width:460px;
     text-align: center;
     background-color: black;
-    color: #B23848;
+    color: #D9250E;
     padding-top:20px;
     padding-bottom: 10px;
     margin-bottom:-20px;
@@ -100,7 +100,12 @@ section.animal_info{
     background-repeat: no-repeat;
     padding-left: 30px;
     height:400px;
+    width: 400px;
+    position: relative;
+    top: 100px;
+    float:right;
+    z-index:-1;
 }
 p.push {
-    padding-top:5px;
+    margin-top:5px;
 }
