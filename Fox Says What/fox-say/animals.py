@@ -26,9 +26,9 @@ class Snake(Animal):
         self.family = ""
         self.genus = "Varanus"
         self.url = "images/snake.png"
-        self.lifespan = "7 Years"
-        self.habitat = "Zoo"
-        self.geolocation = "Komodo Island"
+        self.lifespan = "7"
+        self.habitat = "the zoo"
+        self.geolocation = "on Komodo Island"
         self.sound = self.loud_noises()
 
     def loud_noises(self):
@@ -44,10 +44,10 @@ class Bird(Animal):
         self.klass = "Aves"
         self.family = "Trochilidae"
         self.genus = "Selasphorus"
-        self.url = "images/hummingbird.jpg"
-        self.lifespan = "5 Years"
-        self.habitat = "The Sky"
-        self.geolocation = "USA"
+        self.url = "images/hummingbird.png"
+        self.lifespan = "5"
+        self.habitat = "the sky"
+        self.geolocation = " in the USA"
         self.sound = self.loud_noises()
 
     def loud_noises(self):
@@ -64,9 +64,9 @@ class Person(Animal):
         self.klass = "Mammalia"
         self.family = "Hominidae"
         self.genus = "Homo"
-        self.url = "images/human.jpg"
+        self.url = "images/human.png"
         self.lifespan = "80"
-        self.habitat = "In Da Club"
+        self.habitat = "Da Club"
         self.geolocation = "On Da Pole"
         self.sound = self.loud_noises()
 

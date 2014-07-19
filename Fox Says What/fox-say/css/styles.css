@@ -31,6 +31,7 @@ h1 {
 }
 ul {
     margin-left: 30px;
+    list-style: none;
 }
 .myButton {
 	-moz-box-shadow:inset 0px 1px 0px 0px #a6827e;
@@ -74,4 +75,32 @@ ul {
 .myButton:active {
 	position:relative;
 	top:1px;
+}
+
+@media (max-height: 830px){
+    img.welcome {
+    max-width: 25%;
+    position: absolute;
+    left: 0px;
+    top: 320px;
+    }
+}
+section.animal_pic {
+    position: relative;
+    top:-300px;
+    float:right;
+    width: 35%;
+}
+img.animal {
+    width:100%;
+}
+section.animal_info{
+    background-image:url('../images/paper_texture.jpg');
+    background-size: 400px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    height:400px;
+}
+p.push {
+    padding-top:5px;
 }

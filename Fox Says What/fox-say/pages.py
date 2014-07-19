@@ -64,15 +64,19 @@ class Page(object):
         self.__current_animal = new_animal
         if self.__current_animal != "ERROR":
             self.__section = """
-            <img src="{self.current_animal.url}" alt="Image of {self.current_animal.name}" />
-            <p>{self.current_animal.name}</p>
-            <p>{self.current_animal.phylum}</p>
-            <p>{self.current_animal.klass}</p>
-            <p>{self.current_animal.family}</p>
-            <p>{self.current_animal.genus}</p>
-            <p>{self.current_animal.lifespan}</p>
-            <p>{self.current_animal.habitat}</p>
-            <p>{self.current_animal.geolocation}</p>
+            <section class="animal_pic">
+                <img class='animal' src="{self.current_animal.url}" alt="Image of {self.current_animal.name}" />
+            </section>
+            <section class="animal_info">
+                <p class='push'>This is a {self.current_animal.name}.</p>
+                <p>It is from the {self.current_animal.phylum} phylum.</p>
+                <p>Which is in the {self.current_animal.klass} class.</p>
+                <p>Its family is {self.current_animal.family}.</p>
+                <p>Its genus is {self.current_animal.genus}.</p>
+                <p>It can live for {self.current_animal.lifespan} years.</p>
+                <p>It likes to live in {self.current_animal.habitat}.</p>
+                <p>And spends most of its time {self.current_animal.geolocation}</p>
+            </section>
             """
         else:
             pass
