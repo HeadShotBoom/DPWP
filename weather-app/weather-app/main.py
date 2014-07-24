@@ -29,6 +29,7 @@ class MainHandler(webapp2.RequestHandler):
                 self.content += "     HIGH: "+item.attributes['high'].value
                 self.content += "     LOW: "+item.attributes['low'].value
                 self.content += "     CONDITION: "+item.attributes['text'].value
+                self.content += '<img src="images/'+item.attributes['code'].value+'.png" />'
                 self.content += "<br/>"
 
             self.response.write(self.content)
