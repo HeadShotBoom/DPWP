@@ -1,22 +1,37 @@
 
 import webapp2
 import urllib2 # python classes and code needed to open up url info
-
+from xml.dom import minidom
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         p = FormPage() # This needs to refer to the submost class you are wanting to use
         p.inputs = [['zip', 'text', 'zip code'], ['Submit', 'submit']]
         self.response.write(p.print_out())
+        if self.request.GET:
+            #get info from the API
+            zip = self.request.GET['zip']
+            url = "http://xml.weather.yahoo.com/forecastrss?p=" + zip
+            #Assemble the request
+            request = urllib2.Request(url)
+            #Use URLLIB2 Library to create object to get url
+            opener = urllib2.build_opener()
+            #Use URL to get result - request info from API
+            result = opener.open(request)
 
-        #get info from the API
-        url = "http://xml.weather.yahoo.com/forecastrss?p=32792"
-        #Assemble the request
-        request = urllib2.Request(url)
-        #Use URLLIB2 Library to create object to get url
-        opener = urllib2.build_opener()
-        #Use URL to get result - request info from API
-        result = opener.open(request)
+            #Parse the xml
+            xmldoc = minidom.parse(result)
+            self.response.write(xmldoc.getElementsByTagName('title')[2].firstChild.nodeValue)
+            self.content = '<br/>'
+            list = xmldoc.getElementsByTagName("yweather:forecast")
+            for item in list:
+                self.content += item.attributes['day'].value
+                self.content += "     HIGH: "+item.attributes['high'].value
+                self.content += "     LOW: "+item.attributes['low'].value
+                self.content += "     CONDITION: "+item.attributes['text'].value
+                self.content += "<br/>"
+
+            self.response.write(self.content)
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
