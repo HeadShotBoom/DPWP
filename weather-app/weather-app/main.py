@@ -1,11 +1,22 @@
 
 import webapp2
+import urllib2 # python classes and code needed to open up url info
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         p = FormPage() # This needs to refer to the submost class you are wanting to use
-        p.inputs = [['first_name', 'text', 'First Name'], ['last_name', 'text', 'Last Name'], ['Submit', 'submit']]
+        p.inputs = [['zip', 'text', 'zip code'], ['Submit', 'submit']]
         self.response.write(p.print_out())
+
+        #get info from the API
+        url = "http://xml.weather.yahoo.com/forecastrss?p=32792"
+        #Assemble the request
+        request = urllib2.Request(url)
+        #Use URLLIB2 Library to create object to get url
+        opener = urllib2.build_opener()
+        #Use URL to get result - request info from API
+        result = opener.open(request)
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
@@ -17,7 +28,7 @@ class Page(object):  # Borrowing stuff from object class
     </head>
     <body>'''
 
-        self._body = ""
+        self._body = "Weather App"
         self._close = '''
     </body>
 </html>'''
