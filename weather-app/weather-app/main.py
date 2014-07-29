@@ -4,23 +4,41 @@ import urllib2 # python classes and code needed to open up url info
 # from xml.dom import minidom
 from xml.etree.ElementTree import QName
 import xml.etree.ElementTree as ET
+import json
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         p = FormPage() # This needs to refer to the submost class you are wanting to use
+        """
+        Inputs for etree and microdom
         p.inputs = [['zip', 'text', 'zip code'], ['Submit', 'submit']]
+        """
+        p.inputs = [['city', 'text', 'city'], ['country', 'text', 'country'], ['Submit', 'submit']]
         self.response.write(p.print_out())
         if self.request.GET:
             #get info from the API
-            zip = self.request.GET['zip']
-            url = "http://xml.weather.yahoo.com/forecastrss?p=" + zip
+            city = self.request.GET['city']
+            country = self.request.GET['country']
+            """
+            url for yahoo weather
+            url = "http://xml.weather.yahoo.com/forecastrss?q=" + zip
+            """
+            #Url for openweather for JSON
+            url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country
             #Assemble the request
             request = urllib2.Request(url)
             #Use URLLIB2 Library to create object to get url
             opener = urllib2.build_opener()
             #Use URL to get result - request info from API
             result = opener.open(request)
+
+            #parsoing the json
+            jsondoc = json.load(result)
+
+            name = jsondoc['name']
+            condition = jsondoc['weather'][0]['description']
+            self.response.write("City Chosen: "+ name + "<br/>" + "Weather ar your location: " + condition)
 
             """
             #Parse the xml with minidom
@@ -38,7 +56,7 @@ class MainHandler(webapp2.RequestHandler):
 
             self.response.write(self.content)
             """
-
+            """
             #Parse the xml with Etree
             xmldoc = ET.parse(result)
             root = xmldoc.getroot()
@@ -52,6 +70,7 @@ class MainHandler(webapp2.RequestHandler):
                 content += i.attrib['day'] + "---High:" + i.attrib['high']
                 content += "<br/>"
             self.response.write(content)
+            """
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
