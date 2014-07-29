@@ -15,9 +15,15 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(p.print_out())
         if self.request.GET:
             #get info from the API
-            wm = WeatherModel()
-            wm.zip = self.request.GET['zip']
+            wm = WeatherModel() #Creates Model
+            wm.zip = self.request.GET['zip'] # Sends zip from URL to model
             wm.callApi()
+
+
+
+            wv = WeatherView
+            wv.wdos = wm.dos  # Takes data objects from model and gives to view.
+            self.response.write(wv.content)
             # self.response.write(xmldoc.getElementsByTagName('title')[2].firstChild.nodeValue)
             """
             self.content = '<br/>'
@@ -31,6 +37,33 @@ class MainHandler(webapp2.RequestHandler):
 
             self.response.write(self.content)
             """
+class WeatherView(object):
+    """
+    This class handles how the data is shown to the user.
+    """
+    def __init__(self):
+        self.__wdos = []
+        self.__content = '<br />'
+
+    def update(self):
+        for do in self.__wdos:
+            self.__content += do.day
+
+
+    @property
+    def wdos(self):
+        pass
+
+    @wdos.setter
+    def wdos(self, arr):
+        self.__wdos = arr
+        self.update()
+
+    @property
+    def content(self):
+        return self.__content
+
+
 
 class WeatherModel(object):
     """This model handles fetching parsing and sorting data from yahoo weather api """
@@ -64,6 +97,10 @@ class WeatherModel(object):
             do.code = tag.attributes['code'].value
             do.condition = tag.attributes['text'].value
             self._dos.append(do)
+    @property
+    def dos(self):
+        return self._dos
+
 
     @property
     def zip(self):
