@@ -40,37 +40,6 @@ class MainHandler(webapp2.RequestHandler):
             condition = jsondoc['weather'][0]['description']
             self.response.write("City Chosen: "+ name + "<br/>" + "Weather ar your location: " + condition)
 
-            """
-            #Parse the xml with minidom
-            xmldoc = minidom.parse(result)
-            self.response.write(xmldoc.getElementsByTagName('title')[2].firstChild.nodeValue)
-            self.content = '<br/>'
-            list = xmldoc.getElementsByTagName("yweather:forecast")
-            for item in list:
-                self.content += item.attributes['day'].value
-                self.content += "     HIGH: "+item.attributes['high'].value
-                self.content += "     LOW: "+item.attributes['low'].value
-                self.content += "     CONDITION: "+item.attributes['text'].value
-                self.content += '<img src="images/'+item.attributes['code'].value+'.png" width="30" />'
-                self.content += "<br/>"
-
-            self.response.write(self.content)
-            """
-            """
-            #Parse the xml with Etree
-            xmldoc = ET.parse(result)
-            root = xmldoc.getroot()
-
-            namespace = "http://xml.weather.yahoo.com/ns/rss/1.0"
-
-            content = "<br/>"
-            content = root[0][0].text + "<br/>"
-            content = root[0][12][7].attrib['day'] + "<br/>"
-            for i in root.iter("{"+namespace+"}forecast"):
-                content += i.attrib['day'] + "---High:" + i.attrib['high']
-                content += "<br/>"
-            self.response.write(content)
-            """
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
