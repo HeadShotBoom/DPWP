@@ -1,7 +1,10 @@
 
 import webapp2
 import urllib2 # python classes and code needed to open up url info
-from xml.dom import minidom
+# from xml.dom import minidom
+from xml.etree.ElementTree import QName
+import xml.etree.ElementTree as ET
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -19,7 +22,8 @@ class MainHandler(webapp2.RequestHandler):
             #Use URL to get result - request info from API
             result = opener.open(request)
 
-            #Parse the xml
+            """
+            #Parse the xml with minidom
             xmldoc = minidom.parse(result)
             self.response.write(xmldoc.getElementsByTagName('title')[2].firstChild.nodeValue)
             self.content = '<br/>'
@@ -33,6 +37,21 @@ class MainHandler(webapp2.RequestHandler):
                 self.content += "<br/>"
 
             self.response.write(self.content)
+            """
+
+            #Parse the xml with Etree
+            xmldoc = ET.parse(result)
+            root = xmldoc.getroot()
+
+            namespace = "http://xml.weather.yahoo.com/ns/rss/1.0"
+
+            content = "<br/>"
+            content = root[0][0].text + "<br/>"
+            content = root[0][12][7].attrib['day'] + "<br/>"
+            for i in root.iter("{"+namespace+"}forecast"):
+                content += i.attrib['day'] + "---High:" + i.attrib['high']
+                content += "<br/>"
+            self.response.write(content)
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
