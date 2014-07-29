@@ -10,20 +10,18 @@ from xml.dom import minidom
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         p = FormPage() # This needs to refer to the submost class you are wanting to use
-
         p.inputs = [['zip', 'text', 'zip code'], ['Submit', 'submit']]
-        self.response.write(p.print_out())
+
+
         if self.request.GET:
             #get info from the API
             wm = WeatherModel() #Creates Model
             wm.zip = self.request.GET['zip'] # Sends zip from URL to model
             wm.callApi()
-
-
-
-            wv = WeatherView
+            wv = WeatherView()
             wv.wdos = wm.dos  # Takes data objects from model and gives to view.
-            self.response.write(wv.content)
+            p._body = wv.content
+            self.response.write(p.print_out())
             # self.response.write(xmldoc.getElementsByTagName('title')[2].firstChild.nodeValue)
             """
             self.content = '<br/>'
@@ -37,6 +35,9 @@ class MainHandler(webapp2.RequestHandler):
 
             self.response.write(self.content)
             """
+        else:
+            self.response.write(p.print_out())
+
 class WeatherView(object):
     """
     This class handles how the data is shown to the user.
@@ -48,6 +49,9 @@ class WeatherView(object):
     def update(self):
         for do in self.__wdos:
             self.__content += do.day
+            self.__content += "     HIGH:  " + do.high + "     LOW:  " + do.low
+            self.__content += "     CONDITION:  " + do.condition
+            self.__content += '<img src="images/' + do.code + '.png" width="20" /><br />'
 
 
     @property
@@ -68,7 +72,7 @@ class WeatherView(object):
 class WeatherModel(object):
     """This model handles fetching parsing and sorting data from yahoo weather api """
     def __init__(self):
-        self.__url = "http://xml.weather.yahoo.com/forecastrss?q="
+        self.__url = "http://xml.weather.yahoo.com/forecastrss?p="
         self.__zip = ""
         self.__xmldoc = ""
         #parse the url
@@ -169,10 +173,10 @@ class FormPage(Page):
             except:
                 self._form_inputs += '" />'
 
-        print self._form_inputs
+        # print self._form_inputs
 
     def print_out(self):
-        return self._head + self._body + self._form_open + self._form_inputs + self._form_close + self._close
+        return self._head + "Weather App" + self._form_open + self._form_inputs + self._form_close + self._body + self._close
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
