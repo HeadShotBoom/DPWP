@@ -12,33 +12,18 @@ class MainHandler(webapp2.RequestHandler):
         p = FormPage() # This needs to refer to the submost class you are wanting to use
 
         p.inputs = [['zip', 'text', 'zip code'], ['Submit', 'submit']]
-        """
-        p.inputs = [['city', 'text', 'city'], ['country', 'text', 'country'], ['Submit', 'submit']]
-        """
         self.response.write(p.print_out())
         if self.request.GET:
             #get info from the API
             zip = self.request.GET['zip']
 
             url = "http://xml.weather.yahoo.com/forecastrss?q=" + zip
-            """
-            #Url for openweather for JSON
-            url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country
-            """
             #Assemble the request
             request = urllib2.Request(url)
             #Use URLLIB2 Library to create object to get url
             opener = urllib2.build_opener()
             #Use URL to get result - request info from API
             result = opener.open(request)
-            """
-            #parsoing the json
-            jsondoc = json.load(result)
-
-            name = jsondoc['name']
-            condition = jsondoc['weather'][0]['description']
-            self.response.write("City Chosen: "+ name + "<br/>" + "Weather ar your location: " + condition)
-            """
 
             #Parse the xml with minidom
             xmldoc = minidom.parse(result)
@@ -55,21 +40,6 @@ class MainHandler(webapp2.RequestHandler):
 
             self.response.write(self.content)
 
-            """
-            #Parse the xml with Etree
-            xmldoc = ET.parse(result)
-            root = xmldoc.getroot()
-
-            namespace = "http://xml.weather.yahoo.com/ns/rss/1.0"
-
-            content = "<br/>"
-            content = root[0][0].text + "<br/>"
-            content = root[0][12][7].attrib['day'] + "<br/>"
-            for i in root.iter("{"+namespace+"}forecast"):
-                content += i.attrib['day'] + "---High:" + i.attrib['high']
-                content += "<br/>"
-            self.response.write(content)
-            """
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
@@ -98,10 +68,7 @@ class FormPage(Page):
         self._form_close = '</form>'
         self.__inputs = []
         self._form_inputs = ''
-        # <input type="text" value="" name="first_name" placeholder="First Name" />
-        # ['first_name', 'text', 'First Name']
-        # <input type="text" value="" name="last_name" placeholder="Last Name" />
-        # <input type="submit" value="Submit"
+
 
     @property
     def inputs(self):
@@ -123,7 +90,6 @@ class FormPage(Page):
 
         print self._form_inputs
 
-    #POLYMORPHISM ALERT!!!!! --------Method Overriding direct replacement of printout function above
     def print_out(self):
         return self._head + self._body + self._form_open + self._form_inputs + self._form_close + self._close
 
