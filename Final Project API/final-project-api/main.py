@@ -1,5 +1,8 @@
 """
-
+Daniel Carroll
+14 July 2014
+Design Patterns for Web Programming
+Final Project
 """
 
 
@@ -71,10 +74,6 @@ class FormPage(Page):
         self._form_close = '</form>'
         self.__inputs = []
         self._form_inputs = ''
-        # <input type="text" value="" name="first_name" placeholder="First Name" />
-        # ['first_name', 'text', 'First Name']
-        # <input type="text" value="" name="last_name" placeholder="Last Name" />
-        # <input type="submit" value="Submit"
 
     @property
     def inputs(self):
