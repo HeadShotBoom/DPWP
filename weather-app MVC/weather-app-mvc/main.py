@@ -15,21 +15,12 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(p.print_out())
         if self.request.GET:
             #get info from the API
-            zip = self.request.GET['zip']
-
-            url = "http://xml.weather.yahoo.com/forecastrss?q=" + zip
-            #Assemble the request
-            request = urllib2.Request(url)
-            #Use URLLIB2 Library to create object to get url
-            opener = urllib2.build_opener()
-            #Use URL to get result - request info from API
-            result = opener.open(request)
-
-            #Parse the xml with minidom
-            xmldoc = minidom.parse(result)
-            self.response.write(xmldoc.getElementsByTagName('title')[2].firstChild.nodeValue)
+            wm = WeatherModel()
+            wm.zip = self.request.GET['zip']
+            wm.callApi()
+            # self.response.write(xmldoc.getElementsByTagName('title')[2].firstChild.nodeValue)
+            """
             self.content = '<br/>'
-            list = xmldoc.getElementsByTagName("yweather:forecast")
             for item in list:
                 self.content += item.attributes['day'].value
                 self.content += "     HIGH: "+item.attributes['high'].value
@@ -39,7 +30,60 @@ class MainHandler(webapp2.RequestHandler):
                 self.content += "<br/>"
 
             self.response.write(self.content)
+            """
 
+class WeatherModel(object):
+    """This model handles fetching parsing and sorting data from yahoo weather api """
+    def __init__(self):
+        self.__url = "http://xml.weather.yahoo.com/forecastrss?q="
+        self.__zip = ""
+        self.__xmldoc = ""
+        #parse the url
+
+
+    def callApi(self):
+        #Requests and loads info from api
+        #Assemble the request
+        request = urllib2.Request(self.__url+self.__zip)
+        #Use URLLIB2 Library to create object to get url
+        opener = urllib2.build_opener()
+        #Use URL to get result - request info from API
+        result = opener.open(request)
+        #Parse DATA
+        self.__xmldoc = minidom.parse(result)
+
+
+        list = self.__xmldoc.getElementsByTagName("yweather:forecast")
+        self._dos = []
+        for tag in list:
+            do = WeatherData()
+            do.day = tag.attributes['day'].value
+            do.high = tag.attributes['high'].value
+            do.date = tag.attributes['date'].value
+            do.low = tag.attributes['low'].value
+            do.code = tag.attributes['code'].value
+            do.condition = tag.attributes['text'].value
+            self._dos.append(do)
+
+    @property
+    def zip(self):
+        pass
+
+    @zip.setter
+    def zip(self, new_zip):
+        self.__zip = new_zip
+
+class WeatherData(object):
+    """
+    This data object holds the data fetched by the model and shown by the view
+    """
+    def __init__(self):
+        self.day = ""
+        self.high = ""
+        self.low = ""
+        self.code = ""
+        self.condition = ""
+        self.date = ""
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
