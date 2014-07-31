@@ -36,7 +36,7 @@ class MainHandler(webapp2.RequestHandler):
             self.critic_rating = jsondoc['movies'][0]['ratings']['audience_score']
             self.thumbnail = jsondoc['movies'][0]['posters']['thumbnail']
             self.actors = jsondoc['movies'][0]['abridged_cast']
-           
+
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
