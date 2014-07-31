@@ -37,15 +37,13 @@ class MainHandler(webapp2.RequestHandler):
             critic_rating = jsondoc['movies'][0]['ratings']['audience_score']
             thumbnail = jsondoc['movies'][0]['posters']['thumbnail']
             actors = jsondoc['movies'][0]['abridged_cast']
-            this_actor = ""
+            this_actor = []
             count = 0
             for actor in actors:
-                this_actor = jsondoc['movies'][0]['abridged_cast'][count]
+                this_actor.append(jsondoc['movies'][0]['abridged_cast'][count])
                 count += 1
-                print this_actor
-            self.response.write("Chosen Movie: " + name + "<br />" + 'The movie is <img src="'+ thumbnail + '" alt="Thumbnail" />')
-
-
+                print this_actor[count]['name']
+            # self.response.write("Chosen Movie: " + name + "<br />" + 'The movie is <img src="'+ thumbnail + '" alt="Thumbnail" />')
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
