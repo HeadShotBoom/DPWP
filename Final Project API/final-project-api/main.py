@@ -13,10 +13,9 @@ import json
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        p = FormPage() # This needs to refer to the submost class you are wanting to use
+        p = Page() # This needs to refer to the submost class you are wanting to use
 
-        p.inputs = [['movie', 'text', 'Movie Title'], ['Submit', 'submit']]
-        self.response.write(p.print_out())
+
         if self.request.GET:
             #get info from the API
             movie = self.request.GET['movie']
@@ -32,16 +31,16 @@ class MainHandler(webapp2.RequestHandler):
             #parsoing the json
             jsondoc = json.load(result)
 
-            name = jsondoc['movies'][0]['title']
-            length = jsondoc['movies'][0]['runtime']
-            critic_rating = jsondoc['movies'][0]['ratings']['audience_score']
-            thumbnail = jsondoc['movies'][0]['posters']['thumbnail']
-            actors = jsondoc['movies'][0]['abridged_cast']
-            self.response.write("Chosen Movie: " + name + "<br />" + 'The movie is <img src="' + thumbnail + '" alt="Thumbnail" />')
+            self.name = jsondoc['movies'][0]['title']
+            self.length = jsondoc['movies'][0]['runtime']
+            self.critic_rating = jsondoc['movies'][0]['ratings']['audience_score']
+            self.thumbnail = jsondoc['movies'][0]['posters']['thumbnail']
+            self.actors = jsondoc['movies'][0]['abridged_cast']
+           
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
-        self._head = '''
+        self.head = '''
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -49,51 +48,27 @@ class Page(object):  # Borrowing stuff from object class
     </head>
     <body>'''
 
-        self._body = """
+        self.body = """
         <h1>Search for a Movie</h1>
         """
         self.__result = """
-        
+
         """
-        self._close = '''
+        self.form = """
+        <form method="get">
+            <input type="text" name="movie" placeholder="Movie Title" />
+            <input type="submit" name="Submit" />
+        </form>
+        """
+        self.close = '''
     </body>
 </html>'''
+        self.whole_page = self.head + self.body + self.form + self.close
 
-    def print_out(self):
-        return self._head + self._body + self._close
+    def update(self):
+        self.whole_page = self.head + self.body + self.form + self.__result + self.close
+        self.whole_page = self.whole_page.format(**locals())
 
-
-class FormPage(Page):
-    def __init__(self):
-        #Constructor function for super class
-        Page.__init__(self)
-        self._form_open = '<form method="get">'
-        self._form_close = '</form>'
-        self.__inputs = []
-        self._form_inputs = ''
-
-    @property
-    def inputs(self):
-        pass
-
-    @inputs.setter
-    def inputs(self, arr):
-        #change my private inputs variable
-        self.__inputs = arr
-        # sort through the mega array and create HTML inputs based on info there.
-        for item in arr:
-            self._form_inputs += '<input type="' + item[1] + '" name="' + item[0]
-            # If there is a 3rd Item, add it in
-            try:
-                self._form_inputs += '" placeholder="' + item[2] + '" />'
-            # Otherwise end the tag.
-            except:
-                self._form_inputs += '" />'
-
-
-
-    def print_out(self):
-        return self._head + self._body + self._form_open + self._form_inputs + self._form_close + self._close
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
