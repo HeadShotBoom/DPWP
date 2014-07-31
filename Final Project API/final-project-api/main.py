@@ -42,8 +42,8 @@ class MainHandler(webapp2.RequestHandler):
             for actor in actors:
                 this_actor.append(jsondoc['movies'][0]['abridged_cast'][count])
                 count += 1
-                print this_actor[count]['name']
-            # self.response.write("Chosen Movie: " + name + "<br />" + 'The movie is <img src="'+ thumbnail + '" alt="Thumbnail" />')
+
+            self.response.write("Chosen Movie: " + name + "<br />" + 'The movie is <img src="'+ thumbnail + '" alt="Thumbnail" />')
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
@@ -55,7 +55,12 @@ class Page(object):  # Borrowing stuff from object class
     </head>
     <body>'''
 
-        self._body = "Search for a Movie"
+        self._body = """
+        <h1>Search for a Movie</h1>
+        """
+        self.__result = """
+        
+        """
         self._close = '''
     </body>
 </html>'''
@@ -90,6 +95,7 @@ class FormPage(Page):
             # Otherwise end the tag.
             except:
                 self._form_inputs += '" />'
+
 
 
     def print_out(self):
