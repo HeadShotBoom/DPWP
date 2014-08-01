@@ -1,165 +1,130 @@
 
 import webapp2
 import urllib2 # python classes and code needed to open up url info
-import json
+from xml.dom import minidom
+# from xml.etree.ElementTree import QName
+# import xml.etree.ElementTree as ET
+# import json
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         p = FormPage() # This needs to refer to the submost class you are wanting to use
-        p.inputs = [['movie', 'text', 'Movie Title'], ['Submit', 'submit']]
+        p.inputs = [['zip', 'text', 'zip code'], ['Submit', 'submit']]
 
 
         if self.request.GET:
             #get info from the API
-            mm = MovieModel()  #Creates Model
-            this_movie = self.request.GET['movie'] # Sends Movie from URL to model
-            new_movie = this_movie.replace(" ", "+")
-            mm.movie = new_movie
-            mm.callApi()
-            mv = MovieView()
-            mv.wdos = mm.current_movie  # Takes data objects from model and gives to view.
-            p._body = mv.content
+            wm = WeatherModel() #Creates Model
+            wm.zip = self.request.GET['zip'] # Sends zip from URL to model
+            wm.callApi()
+            wv = WeatherView()
+            wv.wdos = wm.dos  # Takes data objects from model and gives to view.
+            p._body = wv.content
             self.response.write(p.print_out())
+            # self.response.write(xmldoc.getElementsByTagName('title')[2].firstChild.nodeValue)
+            """
+            self.content = '<br/>'
+            for item in list:
+                self.content += item.attributes['day'].value
+                self.content += "     HIGH: "+item.attributes['high'].value
+                self.content += "     LOW: "+item.attributes['low'].value
+                self.content += "     CONDITION: "+item.attributes['text'].value
+                self.content += '<img src="images/'+item.attributes['code'].value+'.png" width="30" />'
+                self.content += "<br/>"
+
+            self.response.write(self.content)
+            """
         else:
             self.response.write(p.print_out())
 
-class MovieView(object):
+class WeatherView(object):
     """
     This class handles how the data is shown to the user.
     """
     def __init__(self):
         self.__wdos = []
-        self.__content = '<h3>The movie you selected is.<h3>'
- #         + ' .</h3>' + '<p>It has a runtime of ' + \
- # md.length + ' minutes.</p>' + '<p>It has a rating of ' + do.critic_rating + ' .</p>' + \
- # '<p>The main actor is ' + do.actor + ' .</p>' + '<h4>Box Image</h4>' +'<img src="' + \
- # do.thumbnail + '" width="20" />'
+        self.__content = '<br />'
 
+    def update(self):
+        for do in self.__wdos:
+            self.__content += do.day
+            self.__content += "     HIGH:  " + do.high + "     LOW:  " + do.low
+            self.__content += "     CONDITION:  " + do.condition
+            self.__content += '<img src="images/' + do.code + '.png" width="20" /><br />'
 
 
     @property
     def wdos(self):
-        return self.__wdos
+        pass
 
     @wdos.setter
     def wdos(self, arr):
         self.__wdos = arr
-
-    @property
-    def title(self):
-        return self.__title
-
-    @title.setter
-    def title(self, arr):
-        self.__title = arr
-
-    @property
-    def length(self):
-        return self.__length
-
-    @length.setter
-    def length(self, arr):
-        self.__length = arr
-
-    @property
-    def rating(self):
-        return self.__rating
-
-    @rating.setter
-    def rating(self, arr):
-        self.__rating = arr
-
-    @property
-    def thumbnail(self):
-        return self.__thumbnail
-
-    @thumbnail.setter
-    def thumbnail(self, arr):
-        self.__thumbnail = arr
-
-    @property
-    def thumbnail(self):
-        return self.__thumbnail
-
-    @thumbnail.setter
-    def thumbnail(self, arr):
-        self.__thumbnail = arr
-
-
-    @property
-    def actor(self):
-        return self.__actor
-
-    @actor.setter
-    def actor(self, new):
-        self.__actor = new
+        self.update()
 
     @property
     def content(self):
         return self.__content
 
-    @content.setter
-    def content(self, new):
-        self.__content = new
 
 
-
-class MovieModel(object):
-    """This model handles fetching parsing and sorting data from rotten tomatoes api """
+class WeatherModel(object):
+    """This model handles fetching parsing and sorting data from yahoo weather api """
     def __init__(self):
-        self.jsondoc = ""
-        self.__movie = ""
+        self.__url = "http://xml.weather.yahoo.com/forecastrss?p="
+        self.__zip = ""
+        self.__xmldoc = ""
+        #parse the url
+
 
     def callApi(self):
-        #get info from the API
-        url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=zt3u3utgzsba8qdy3bwcaf6g&q=" + \
-              self.__movie + "&page_limit=1"
+        #Requests and loads info from api
         #Assemble the request
-        request = urllib2.Request(url)
+        request = urllib2.Request(self.__url+self.__zip)
         #Use URLLIB2 Library to create object to get url
         opener = urllib2.build_opener()
         #Use URL to get result - request info from API
         result = opener.open(request)
+        #Parse DATA
+        self.__xmldoc = minidom.parse(result)
 
-        #parsoing the json
-        jsondoc = json.load(result)
 
-        self.current_movie_title = jsondoc['movies'][0]['title']
-        self.current_movie_length = jsondoc['movies'][0]['runtime']
-        self.current_movie_critic_rating = jsondoc['movies'][0]['ratings']['audience_score']
-        self.current_movie_thumbnail = jsondoc['movies'][0]['posters']['thumbnail']
-        self.current_movie_actor = jsondoc['movies'][0]['abridged_cast'][0]['name']
-
-        self.__current_movie = [self.current_movie_title, self.current_movie_length, self.current_movie_critic_rating, self.current_movie_thumbnail, self.current_movie_actor]
+        list = self.__xmldoc.getElementsByTagName("yweather:forecast")
+        self._dos = []
+        for tag in list:
+            do = WeatherData()
+            do.day = tag.attributes['day'].value
+            do.high = tag.attributes['high'].value
+            do.date = tag.attributes['date'].value
+            do.low = tag.attributes['low'].value
+            do.code = tag.attributes['code'].value
+            do.condition = tag.attributes['text'].value
+            self._dos.append(do)
     @property
-    def current_movie(self):
-        return self.__current_movie
+    def dos(self):
+        return self._dos
 
-    @current_movie.setter
-    def current_movie(self, new):
-        self.__current_movie = new
-        return self.__current_movie
 
     @property
-    def movie(self):
-        return self.__movie
+    def zip(self):
+        pass
 
-    @movie.setter
-    def movie(self, new_movie):
-        self.__movie = new_movie
-        return self.__movie
+    @zip.setter
+    def zip(self, new_zip):
+        self.__zip = new_zip
 
-class MovieData(object):
+class WeatherData(object):
     """
     This data object holds the data fetched by the model and shown by the view
     """
     def __init__(self):
-        self.title = ""
-        self.length = ""
-        self.critic_rating = ""
-        self.thumbnail = ""
-        self.actor = ""
+        self.day = ""
+        self.high = ""
+        self.low = ""
+        self.code = ""
+        self.condition = ""
+        self.date = ""
 
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
@@ -171,7 +136,7 @@ class Page(object):  # Borrowing stuff from object class
     </head>
     <body>'''
 
-        self._body = "Movie Search App"
+        self._body = "Weather App"
         self._close = '''
     </body>
 </html>'''
@@ -211,7 +176,7 @@ class FormPage(Page):
         # print self._form_inputs
 
     def print_out(self):
-        return self._head + self._form_open + self._form_inputs + self._form_close + self._body + self._close
+        return self._head + "Weather App" + self._form_open + self._form_inputs + self._form_close + self._body + self._close
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
