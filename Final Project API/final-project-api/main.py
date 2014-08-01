@@ -155,7 +155,7 @@ class Page(object):  # Borrowing stuff from object class
     def print_out(self):
         return self._head + self._body + self._close
 
-
+# I could have done this easier since my search parameters arent going to change, but I thought it was fancy.
 class FormPage(Page):
     def __init__(self):
         #Constructor function for super class
@@ -165,11 +165,11 @@ class FormPage(Page):
         self.__inputs = []
         self._form_inputs = ''
 
-
+    # Getter for inputs
     @property
     def inputs(self):
         pass
-
+    # Setter for inputs
     @inputs.setter
     def inputs(self, arr):
         #change my private inputs variable
@@ -184,11 +184,11 @@ class FormPage(Page):
             except:
                 self._form_inputs += '" />'
 
-        # print self._form_inputs
-
+    # Prints our the info for the browser printing function above.
     def print_out(self):
         return self._head + self._form_open + self._form_inputs + self._form_close + self._body + self._close
 
+# Here be pirates and horseshoes
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
 ], debug=True)
