@@ -90,10 +90,13 @@ class MovieModel(object):
         self.current_movie_actor = jsondoc['movies'][0]['abridged_cast'][0]['name']
         # Combines all above variables into an object for easy transportation
         self.__current_movie = [self.current_movie_title, self.current_movie_length, self.current_movie_critic_rating, self.current_movie_thumbnail, self.current_movie_actor]
+
+     #getter for current movie
     @property
     def current_movie(self):
         return self.__current_movie
 
+    #setter for current movie
     @current_movie.setter
     def current_movie(self, new):
         self.__current_movie = new
