@@ -11,20 +11,24 @@ class MainHandler(webapp2.RequestHandler):
 
 
         if self.request.GET:
-            #get info from the API
-            mm = MovieModel()  #Creates Model
-            this_movie = self.request.GET['movie'] # Sends Movie from URL to model
-            new_movie = this_movie.replace(" ", "+")
-            mm.movie = new_movie
-            mm.callApi()
-            mv = MovieView()
-            mv.wdos = mm.current_movie  # Takes data objects from model and gives to view.
-            p._body = '<h3>The movie you selected is '+ mm.current_movie[0] + '.</h3>' + \
-                      '<p>It has a runtime of ' + str(mm.current_movie[1]) + ' minutes.</p>' + '<p>It has a rating of ' \
-                      + str(mm.current_movie[2]) + ' .</p>' + '<p>The main actor is ' + mm.current_movie[4] + ' .</p>' + \
-                      '<h4>Box Image</h4>' + '<img src="' + mm.current_movie[3] + '" alt="thumbnail" />'
+            if self.request.GET['movie']!="":
+                #get info from the API
+                mm = MovieModel()  #Creates Model
+                this_movie = self.request.GET['movie'] # Sends Movie from URL to model
+                new_movie = this_movie.replace(" ", "+")
+                mm.movie = new_movie
+                mm.callApi()
+                mv = MovieView()
+                mv.wdos = mm.current_movie  # Takes data objects from model and gives to view.
+                p._body = '<h3>The movie you selected is '+ mm.current_movie[0] + \
+                          '.</h3> <section><div><h4>Box Image</h4>' + '<img src="' + mm.current_movie[3] \
+                          + '" alt="thumbnail" /></div><p class="push">Title: ' + mm.current_movie[0] + '<p>It has a runtime of ' + str(mm.current_movie[1]) + \
+                          ' minutes.</p>' + '<p>It has a rating of ' + str(mm.current_movie[2]) + ' .</p>' + \
+                          '<p>The main actor is ' + mm.current_movie[4] + ' .</p></section>'
 
-            self.response.write(p.print_out())
+                self.response.write(p.print_out())
+            else:
+                self.response.write(p.print_out())
         else:
             self.response.write(p.print_out())
 
@@ -46,62 +50,6 @@ class MovieView(object):
     def wdos(self, arr):
         self.__wdos = arr
 
-    @property
-    def title(self):
-        return self.__title
-
-    @title.setter
-    def title(self, arr):
-        self.__title = arr
-
-    @property
-    def length(self):
-        return self.__length
-
-    @length.setter
-    def length(self, arr):
-        self.__length = arr
-
-    @property
-    def rating(self):
-        return self.__rating
-
-    @rating.setter
-    def rating(self, arr):
-        self.__rating = arr
-
-    @property
-    def thumbnail(self):
-        return self.__thumbnail
-
-    @thumbnail.setter
-    def thumbnail(self, arr):
-        self.__thumbnail = arr
-
-    @property
-    def thumbnail(self):
-        return self.__thumbnail
-
-    @thumbnail.setter
-    def thumbnail(self, arr):
-        self.__thumbnail = arr
-
-
-    @property
-    def actor(self):
-        return self.__actor
-
-    @actor.setter
-    def actor(self, new):
-        self.__actor = new
-
-    @property
-    def content(self):
-        return self.__content
-
-    @content.setter
-    def content(self, new):
-        self.__content = new
 
 
 
@@ -167,11 +115,15 @@ class Page(object):  # Borrowing stuff from object class
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title></title>
+        <title>Movie Search</title>
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
     </head>
     <body>'''
 
-        self._body = "Movie Search App"
+        self._body = """
+        <h3>Enter a Movie above to Search our Database</h3>
+        <img src="images/imdb.png" alt="IMDB Logo" />
+        """
         self._close = '''
     </body>
 </html>'''
