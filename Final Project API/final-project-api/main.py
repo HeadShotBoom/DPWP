@@ -3,7 +3,7 @@ import webapp2
 import urllib2 # python classes and code needed to open up url info
 import json
 
-
+# This is the main class that interacts with the browser
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         p = FormPage() # This needs to refer to the submost class you are wanting to use
@@ -15,50 +15,59 @@ class MainHandler(webapp2.RequestHandler):
                 #get info from the API
                 mm = MovieModel()  #Creates Model
                 this_movie = self.request.GET['movie'] # Sends Movie from URL to model
+                # Uses regular expression to format whitespace for url transmital
                 new_movie = this_movie.replace(" ", "+")
                 mm.movie = new_movie
+                # Sends request to API server
                 mm.callApi()
                 mv = MovieView()
+                # Stores information about current movie in an area where the view controller can use it.
                 mv.wdos = mm.current_movie  # Takes data objects from model and gives to view.
+                # Replaces the body information with this information.
                 p._body = '<h3>The movie you selected is '+ mm.current_movie[0] + \
                           '.</h3> <section><div><h4>Box Image</h4>' + '<img src="' + mm.current_movie[3] \
                           + '" alt="thumbnail" /></div><p class="push">Title: ' + mm.current_movie[0] + '<p>It has a runtime of ' + str(mm.current_movie[1]) + \
                           ' minutes.</p>' + '<p>It has a rating of ' + str(mm.current_movie[2]) + ' .</p>' + \
                           '<p>The main actor is ' + mm.current_movie[4] + ' .</p></section>'
-
+                # Write info to browser
                 self.response.write(p.print_out())
             else:
                 self.response.write(p.print_out())
         else:
             self.response.write(p.print_out())
 
+# View class of MVC arcitecture
 class MovieView(object):
     """
     This class handles how the data is shown to the user.
     """
     def __init__(self):
+        # Holds data found from another class
         self.__wdos = []
+        # Placeholder for content section.
         self.__content = ""
 
 
-
+    # Getter for wdos
     @property
     def wdos(self):
         return self.__wdos
-
+    # Setter for wdos
     @wdos.setter
     def wdos(self, arr):
         self.__wdos = arr
 
 
 
-
+# Model class for this project
 class MovieModel(object):
     """This model handles fetching parsing and sorting data from rotten tomatoes api """
     def __init__(self):
+        # Placeholders
         self.jsondoc = ""
         self.__movie = ""
 
+    # Function used to call the api site and get information from it.
     def callApi(self):
         #get info from the API
         url = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=zt3u3utgzsba8qdy3bwcaf6g&q=" + \
