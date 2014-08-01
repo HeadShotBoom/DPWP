@@ -108,16 +108,17 @@ class MovieModel(object):
     def current_movie(self, new):
         self.__current_movie = new
         return self.__current_movie
-
+    #getter for movie
     @property
     def movie(self):
         return self.__movie
-
+    # setter for movie
     @movie.setter
     def movie(self, new_movie):
         self.__movie = new_movie
         return self.__movie
 
+# Data class for this project
 class MovieData(object):
     """
     This data object holds the data fetched by the model and shown by the view
@@ -129,8 +130,10 @@ class MovieData(object):
         self.thumbnail = ""
         self.actor = ""
 
+# Holds html markup for page
 class Page(object):  # Borrowing stuff from object class
     def __init__(self):
+        #Opening head tag info
         self._head = '''
 <!DOCTYPE HTML>
 <html>
@@ -139,15 +142,16 @@ class Page(object):  # Borrowing stuff from object class
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
     </head>
     <body>'''
-
+        #Body tag html info
         self._body = """
         <h3>Enter a Movie above to Search our Database</h3>
         <img src="images/imdb.png" alt="IMDB Logo" />
         """
+        # Closing html tags
         self._close = '''
     </body>
 </html>'''
-
+    # This is probably redundant code, but im scared to delete it.
     def print_out(self):
         return self._head + self._body + self._close
 
