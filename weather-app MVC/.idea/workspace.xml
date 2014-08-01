@@ -26,8 +26,8 @@
       <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/weather-app-mvc/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5416667" vertical-offset="795" max-vertical-offset="2610">
-              <caret line="79" column="34" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="34" />
+            <state vertical-scroll-proportion="1.9906167" vertical-offset="0" max-vertical-offset="3360">
+              <caret line="99" column="5" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
               <folding>
                 <element signature="e#1#15#0" expanded="true" />
               </folding>
@@ -38,7 +38,7 @@
       <file leaf-file-name="backup.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/weather-app-mvc/backup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.615385" vertical-offset="1695" max-vertical-offset="2835">
+            <state vertical-scroll-proportion="-65.19231" vertical-offset="510" max-vertical-offset="2835">
               <caret line="147" column="7" selection-start-line="147" selection-start-column="6" selection-end-line="147" selection-end-column="7" />
               <folding>
                 <element signature="e#1#15#0" expanded="true" />
@@ -318,7 +318,9 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/weather-app-mvc/main.py">
@@ -333,7 +335,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/weather-app-mvc/backup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.615385" vertical-offset="1695" max-vertical-offset="2835">
+        <state vertical-scroll-proportion="-65.19231" vertical-offset="510" max-vertical-offset="2835">
           <caret line="147" column="7" selection-start-line="147" selection-start-column="6" selection-end-line="147" selection-end-column="7" />
           <folding>
             <element signature="e#1#15#0" expanded="true" />
@@ -343,8 +345,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/weather-app-mvc/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5416667" vertical-offset="795" max-vertical-offset="2610">
-          <caret line="79" column="34" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="34" />
+        <state vertical-scroll-proportion="1.9906167" vertical-offset="0" max-vertical-offset="3360">
+          <caret line="99" column="5" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
           <folding>
             <element signature="e#1#15#0" expanded="true" />
           </folding>
