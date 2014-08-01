@@ -82,12 +82,13 @@ class MovieModel(object):
         #parsoing the json
         jsondoc = json.load(result)
 
+        # Stores specific pieces of information to variables so I can toss it to another class later.
         self.current_movie_title = jsondoc['movies'][0]['title']
         self.current_movie_length = jsondoc['movies'][0]['runtime']
         self.current_movie_critic_rating = jsondoc['movies'][0]['ratings']['audience_score']
         self.current_movie_thumbnail = jsondoc['movies'][0]['posters']['thumbnail']
         self.current_movie_actor = jsondoc['movies'][0]['abridged_cast'][0]['name']
-
+        # Combines all above variables into an object for easy transportation
         self.__current_movie = [self.current_movie_title, self.current_movie_length, self.current_movie_critic_rating, self.current_movie_thumbnail, self.current_movie_actor]
     @property
     def current_movie(self):
